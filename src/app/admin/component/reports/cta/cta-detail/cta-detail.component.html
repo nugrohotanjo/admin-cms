@@ -1,0 +1,67 @@
+<section class="section">
+  <div class="section-header">
+    <div class="section-header-back">
+        <a routerLink="/reports-cta" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
+    </div>
+    <h1>Call to Action</h1>
+      <div class="section-header-breadcrumb">
+      <div class="breadcrumb-item active"><a routerLink="/">Dashboard</a></div>
+      <div class="breadcrumb-item">Call to Action</div>
+    </div>
+  </div>
+</section>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4>Cta Detail</h4>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <table class="table">
+            <tr>
+              <td>Name</td><td>: {{ CtaDetail?.user_name }}</td>
+            </tr>
+            <tr>
+              <td>Email</td><td>: {{ CtaDetail?.email }}</td>
+            </tr>
+            <tr>
+              <td>Request Date</td><td>: {{ CtaDetail?.createdAt }}</td>
+            </tr>
+            <tr>
+              <td>Product Name</td><td>: {{ CtaDetail?.product_name }}</td>
+            </tr>
+            <tr>
+              <td valign=TOP>Search Data</td>
+                <td> : 
+                  <table>
+                    <tr *ngFor="let data of search_query">
+                      <td>
+                        {{ data.key }}
+                      </td>
+                      <td>
+                        :
+                        {{ data.value }}
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+            </tr>
+          </table>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <a href="{{ file_pdf }}{{ Brochure?.file_name }}">
+              <img src="assets/img/pdf.png" width="100px" height="150px">
+            </a>
+          </div>
+        </div>
+        <!-- <div class="row mt-5">
+          <a routerLink="/{{prefix}}/reports-cta" class="btn btn-icon icon-right btn-primary"><i class="fas fa-arrow-circle-left"></i> Back</a>
+        </div> -->
+        
+      </div>
+    </div>
+  </div>
+</div>

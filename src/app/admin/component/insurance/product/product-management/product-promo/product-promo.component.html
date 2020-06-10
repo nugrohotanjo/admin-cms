@@ -1,0 +1,49 @@
+<div class="section-header">
+    <h1>Step 4 Promotion</h1>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4>Please choose the promotion for this product (If Any)</h4>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="addPromoForm" (ngSubmit)="saveProductPromo()">
+          <div class="row">
+            <div class="col-12 col-sm-12 col-lg-12">
+              <div class="form-group">
+                <label for="">Choose the Promotion</label>
+                <p-multiSelect 
+                  [style]="{'width':'100%'}"
+                  [options]="ListPromotion" 
+                  optionLabel="promo_name" 
+                  formControlName="promotions"
+                  [panelStyle]="{width: '100%'}" 
+                  [showHeader]="true" >
+                </p-multiSelect>
+              </div>
+            </div>
+          </div>
+          <div class="row text-right">
+            <div class="col-md-12">
+                <button
+                  type="button"
+                  routerLink="/{{prefix}}/product/add/modalfactor/{{Type}}/{{Category_id}}/{{Id}}"
+                  class="btn btn-icon icon-right btn-light">
+                    <i class="fas fa-arrow-circle-left"></i>
+                Back</button>
+                &nbsp;
+                <button
+                  type="submit"
+                  class="btn btn-icon icon-right btn-primary">
+                    <i class="fas fa-arrow-circle-right"></i>
+                Next</button>
+            </div>
+          </div>
+          </form>
+        </div>
+      </div>
+      
+    </div>
+  </div>

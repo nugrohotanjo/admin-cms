@@ -1,0 +1,95 @@
+<link rel="stylesheet" href="/assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css">
+
+<div class="section-header">
+  <h1>Master Benefit Level</h1>
+  <div class="section-header-breadcrumb">
+    <div class="breadcrumb-item active"><a routeLink="/">Dashboard</a></div>
+    <div class="breadcrumb-item"><a>Master Benefit Level management</a></div>
+  </div>
+</div>
+
+<div class="section-body">
+<div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4>Benefit Level Management</h4>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="benefitLevelForm" (ngSubmit)="createBenefitLevel()">
+          <input type="text" formControlName="id" class="hilang"/>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="benefit_level">Benefit Level <sup class="text-danger">*</sup></label>
+                  <input  type="text" 
+                          id="benefit_level" 
+                          pInputText 
+                          class="form-control" 
+                          formControlName="benefit_level"
+                          [class.is-invalid]="benefit_level.invalid &&
+                                              benefit_level.touched">   
+                  <div *ngIf="benefit_level.invalid && benefit_level.touched">
+                    <small *ngIf="benefit_level.errors?.required" class="text-danger">Benefit Level Required</small>
+                  </div>  
+                </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="benefit_amount">Benefit Amount <sup class="text-danger">*</sup></label>
+                  <input  type="text" 
+                          id="benefit_amount" 
+                          pInputText 
+                          class="form-control" 
+                          formControlName="benefit_amount"
+                          [class.is-invalid]="benefit_amount.invalid &&
+                                              benefit_amount.touched">   
+                  <div *ngIf="benefit_amount.invalid && benefit_amount.touched">
+                    <small *ngIf="benefit_amount.errors?.required" class="text-danger">Benefit Amount Required</small>
+                  </div>  
+                </div>
+            </div>
+          </div>
+          <div class="row text-right">
+            <div class="col-md-12">
+                <button
+                        *ngIf="!edited"
+                        type="submit" 
+                        [disabled]="!benefitLevelForm.valid"
+                        class="btn btn-icon icon-right btn-primary">
+                        <i class="far fa-save"></i> 
+                Save</button>
+                <button
+                        *ngIf="edited"
+                        type="submit" 
+                        [disabled]="!benefitLevelForm.valid"
+                        class="btn btn-icon icon-right btn-primary">
+                        <i class="far fa-save"></i> 
+                Update</button>
+              &nbsp;
+          
+              <a (click)="resetForm()" class="btn btn-icon icon-right btn-light"><i class="fas fa-backspace"></i> Cancel</a>
+            </div>
+          </div>
+          </form>
+          <div class="row mt-5">
+            <div class="table-responsive">
+              <table id="benefitLevelDatatables" class="table table-striped dataTable no-footer">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Benefit Level</th>
+                    <th>Benefit Amount</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

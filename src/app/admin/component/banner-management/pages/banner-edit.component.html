@@ -1,0 +1,98 @@
+<div class="section-header">
+  <h1>Create Banner</h1>
+</div>
+
+<form [formGroup]="editBanner" (ngSubmit)="updateBanner()">
+<div class="row">
+<div class="col-md-6">
+  <div class="form-group">
+    <label for="name">Banner Name</label>
+      <input  type="text" 
+              id="name" 
+              pInputText 
+              placeholder="Insert link name here..." 
+              class="form-control" 
+              formControlName="name"
+              [class.is-invalid]="name.invalid &&
+                                  name.touched">   
+      <div *ngIf="name.invalid && name.touched">
+        <small *ngIf="name.errors?.required" class="text-danger">Name Required</small>
+      </div>  
+  </div>
+  <div class="form-group">
+    <label for="thumbnail">Thumbnail</label>
+      <div class="custom-file">
+        <input  type="file" 
+                class="custom-file-input" 
+                id="thumbnail" 
+                (change)="selectFile($event)"
+                accept="image/x-png,image/jpeg">
+        <input type="text" formControlName="thumbnail" style="display: none;"/>
+        <label class="custom-file-label" for="thumbnail">Choose file</label>
+      </div>  
+      <div class="progress mb-3 mt-2" *ngIf="progress.percentage > 0">
+        <div  class="progress-bar" 
+              role="progressbar" 
+              attr.aria-valuenow="{{progress.percentage}}"
+              aria-valuemin="0" aria-valuemax="100"
+              [ngStyle]="{width:progress.percentage+'%'}">{{progress.percentage}}%</div>
+      </div>
+      <img [src]="imgUrl" *ngIf="imgUrl != null" width="100%" height="60%" />
+  </div>
+  <div class="form-group">
+    <label for="link">Link</label>
+    <input 
+        id="link" 
+        class="form-control"
+        formControlName="link" />
+    <div *ngIf="description.invalid && description.touched">
+      <small *ngIf="description.errors?.required" class="text-danger">Description Required</small>
+    </div>  
+  </div>
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea 
+            id="description" 
+            rows="5" 
+            cols="30" 
+            class="form-control"
+            pInputTextarea 
+            autoResize="autoResize" 
+            placeholder="Insert description heree"
+            formControlName="description"
+            [class.is-invalid]="description.invalid &&
+                                description.touched"></textarea>
+    <div *ngIf="description.invalid && description.touched">
+      <small *ngIf="description.errors?.required" class="text-danger">Description Required</small>
+    </div>  
+  </div>
+  <div class="form-group">
+    <label for="banner_alt">Banner alt</label>
+    <input  type="text" 
+            id="banner_alt" 
+            pInputText 
+            placeholder="Insert Banner alt here..." 
+            class="form-control" 
+            formControlName="banner_alt"
+            [class.is-invalid]="banner_alt.invalid &&
+                                banner_alt.touched">   
+    <div *ngIf="banner_alt.invalid && banner_alt.touched">
+      <small *ngIf="banner_alt.errors?.required" class="text-danger">Banner alt Required</small>
+    </div>  
+  </div>
+</div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+      <button
+              type="submit" 
+              class="btn btn-icon icon-right btn-primary"
+              [disabled]="!editBanner.valid">
+              <i class="far fa-save"></i> 
+      Save</button>
+    &nbsp;
+
+    <a routerLink="/{{prefix}}/banner" class="btn btn-icon icon-right btn-light"><i class="fas fa-arrow-circle-left"></i> Cancel</a>
+  </div>
+</div>
+</form>

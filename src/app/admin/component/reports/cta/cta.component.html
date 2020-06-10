@@ -1,0 +1,78 @@
+<link rel="stylesheet" href="/assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css">
+
+<div class="section-header">
+  <h1>Call To Action List</h1>
+  <div class="section-header-breadcrumb">
+    <div class="breadcrumb-item active"><a routeLink="/">Dashboard</a></div>
+    <div class="breadcrumb-item"><a>Call To Action List</a></div>
+  </div>
+</div>
+
+<div class="section-body">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-3">
+              <!-- <div class="form-group">
+                <label for="">Filter By Date</label>
+                <input  type="text"
+                  autocomplete="off"
+                  id="filter_date"
+                  placeholder="{{ today }}"
+                  class="form-control"
+                  bsDaterangepicker
+                  (bsValueChange)="onValueChange($event)"
+                  [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" />
+              </div> -->
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="table-responsive">
+              <table id="ctaDatatables" class="table table-striped dataTable no-footer">
+                <thead>
+                  <tr class="text-center">
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+          </div>
+          <div class="row mt-5">
+            <div class="col-md-4">
+              <select name="" class="form-control" (change)="onChangeFilter($event.target.value)">
+                <option value="" selected disabled>Filter Statistic</option>
+                <option value="daily">Daily</option>
+                <option value="monthly">Monthly</option>
+                <option value="yearly">Yearly</option>
+                <option value="range">Range</option>
+              </select>
+            </div>
+            <div class="col-md-12">
+              <div class="chart-wrapper">
+                <canvas baseChart 
+                    [datasets]="lineChartData" 
+                    [labels]="lineChartLabels" 
+                    [options]="lineChartOptions"
+                    [colors]="lineChartColors" 
+                    [legend]="lineChartLegend" 
+                    [chartType]="lineChartType" 
+                    [plugins]="lineChartPlugins">
+                </canvas>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

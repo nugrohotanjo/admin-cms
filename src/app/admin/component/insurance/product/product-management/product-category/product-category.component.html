@@ -1,0 +1,319 @@
+<div class="section-header">
+  <h1>Step 1 Product Specification</h1>
+</div>
+
+<form [formGroup]="addProduct" (ngSubmit)="saveProduct()">
+<input type="text" formControlName="id" class="hilang" />
+<div class="row">
+<div class="col-md-12">
+  <div class="card">
+    <div class="card-header">
+      <h4>Product Specification</h4>
+    </div>
+    <div class="card-body">
+      <!-- <pre>
+        {{ addProduct.value | json }}
+      </pre> -->
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="product_name">Product Name</label>
+              <input  type="text" 
+                      id="product_name" 
+                      placeholder="Insert product name here..." 
+                      class="form-control" 
+                      formControlName="product_name"
+                      [class.is-invalid]="product_name.invalid &&
+                                          product_name.touched">   
+              <div *ngIf="product_name.invalid && product_name.touched">
+                <small *ngIf="product_name.errors?.required" class="text-danger">Name Required</small>
+              </div>  
+          </div>
+          <div  class="form-group"
+                *ngIf="Type == null">
+            <label class="d-block">Product Type</label>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input  type="radio" 
+                      id="basic" 
+                      formControlName="product_type"
+                      class="custom-control-input"
+                      value="basic">
+              <label  class="custom-control-label" for="basic">Basic</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input  type="radio" 
+                      id="rider" 
+                      formControlName="product_type"
+                      class="custom-control-input"
+                      value="rider">
+              <label  class="custom-control-label" for="rider">Rider</label>
+            </div>
+            <div *ngIf="product_type.invalid && product_type.touched">
+              <small *ngIf="product_type.errors?.required" class="text-danger">Product Type Required</small>
+            </div>  
+          </div>
+          <div class="form-group" *ngIf="product_type.value === 'rider'">
+              <label for="rider_icon">Rider Icon</label>
+                <div class="custom-file">
+                  <input  type="file" 
+                          class="custom-file-input" 
+                          id="rider_icon" 
+                          (change)="selectFile($event)"
+                          accept="image/x-png,image/jpeg">
+                  <input type="text" formControlName="rider_icon" style="display: none;"/>
+                  <label class="custom-file-label" for="rider_icon">Choose file</label>
+                </div>  
+                <div class="progress mb-3 mt-2" *ngIf="progress.percentage > 0">
+                  <div  class="progress-bar" 
+                        role="progressbar" 
+                        attr.aria-valuenow="{{progress.percentage}}"
+                        aria-valuemin="0" aria-valuemax="100"
+                        [ngStyle]="{width:progress.percentage+'%'}">{{progress.percentage}}%</div>
+                </div>
+                <img [src]="rider_icon_image" *ngIf="rider_icon_image != null" width="250px" height="250px" />
+            </div>
+          <div class="form-group">
+            <label for="product_category">Product Category</label>
+            <select class="form-control" formControlName="product_category" id="product_category">
+              <option value="" selected disabled>Choose Category</option>
+              <option value="{{ c.id }}" *ngFor="let c of ListCategory">{{ c.category_name }}</option>
+            </select>
+          </div>
+          <div class="form-group" *ngIf="product_type.value === 'basic'">
+            <label for="plan_name">Plan Name</label>
+            <input  class="form-control" 
+                    formControlName="plan_name" 
+                    placeholder="Insert plan name here..." 
+                    type="text" 
+                    id="plan_name" >
+          </div>
+          <div class="form-group">
+            <label for="product_core_id">Product Core ID</label>
+              <input  type="text" 
+                      id="product_core_id" 
+                      placeholder="Insert product core ID here..." 
+                      class="form-control" 
+                      formControlName="product_core_id"
+                      [class.is-invalid]="product_core_id.invalid &&
+                                          product_core_id.touched">   
+              <div *ngIf="product_core_id.invalid && product_core_id.touched">
+                <small *ngIf="product_core_id.errors?.required" class="text-danger">Product Core ID Required</small>
+              </div>  
+          </div>
+          <div class="form-group">
+            <label for="product_core_code">Product Core Code</label>
+            <input  type="text" 
+                    id="product_core_code" 
+                    placeholder="Insert product core code here..." 
+                    class="form-control" 
+                    formControlName="product_core_code"
+                    [class.is-invalid]="product_core_code.invalid &&
+                                        product_core_code.touched">   
+            <div *ngIf="product_core_code.invalid && product_core_code.touched">
+              <small *ngIf="product_core_code.errors?.required" class="text-danger">Product Core Code Required</small>
+            </div>  
+          </div>
+          <div class="form-group">
+            <label for="product_description">Description</label>
+            <textarea id="description" 
+                      rows="5" 
+                      cols="30" 
+                      class="form-control"
+                      autoResize="autoResize" 
+                      placeholder="Insert description here"
+                      formControlName="product_description"
+                      ></textarea>
+          </div>
+          <div class="form-group">
+            <label for="product_general_description">General Description</label>
+            <textarea id="product_general_description" 
+                      rows="5" 
+                      cols="30" 
+                      class="form-control"
+                      autoResize="autoResize" 
+                      placeholder="Insert general description here"
+                      formControlName="product_general_description"
+                      ></textarea>
+          </div>
+          <div class="form-group">
+            <label>Payment Method -­ New Business</label>
+            <p-multiSelect 
+              [style]="{'width':'100%'}"
+              [options]="ListPaymentMethodNew" 
+              optionLabel="method_name" 
+              formControlName="payment_new_business"
+              [panelStyle]="{width: '100%'}" 
+              [showHeader]="true" 
+              [class.is-invalid]="payment_new_business.invalid &&
+                                        payment_new_business.touched">
+            </p-multiSelect>
+            <div *ngIf="payment_new_business.invalid && payment_new_business.touched">
+              <small *ngIf="payment_new_business.errors?.required" class="text-danger">Payment New Bussiness Required</small>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Payment Method -­ Renewal</label>
+            <p-multiSelect 
+              [style]="{'width':'100%'}"
+              [options]="ListPaymentMethodRenewal" 
+              optionLabel="method_name" 
+              formControlName="payment_new_renewal"
+              [panelStyle]="{width: '100%'}" 
+              [showHeader]="true" >
+            </p-multiSelect>
+            <div *ngIf="payment_new_renewal.invalid && payment_new_renewal.touched">
+              <small *ngIf="payment_new_renewal.errors?.required" class="text-danger">Payment New Renewal Required</small>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="">Currency</label>
+            <select   formControlName="currency" 
+                      id="" 
+                      class="form-control"
+                      [class.is-invalid]="payment_new_business.invalid &&
+                                        payment_new_business.touched">
+              <option value="" selected disabled>Choose Currency</option>
+              <option value="{{ c.id }}" *ngFor="let c of ListCurrency">{{ c.code }} - {{ c.name }}</option>
+            </select>
+            <div *ngIf="currency.invalid && currency.touched">
+              <small *ngIf="currency.errors?.required" class="text-danger">Payment New Bussiness Required</small>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="custom-control custom-checkbox">
+              <input  type="checkbox"
+                      class="custom-control-input"
+                      formControlName="beneficiary"
+                      (change)="toggleBeneficiary()"
+                      id="beneficiary">
+              <label class="custom-control-label" for="beneficiary">Multiple Beneficiary</label>
+            </div>
+          </div>
+          <div class="form-group" *ngIf="selectedBeneficiary">
+            <label for="max_beneficiary">Max. amount of Beneficiary</label>
+            <input  type            ="number"
+                    min             ="1"
+                    class           ="form-control"
+                    formControlName ="beneficiaryValue"
+                    id="max_beneficiary">
+          </div>
+          <div class="form-group">
+            <div class="custom-control custom-checkbox">
+              <input  type="checkbox" 
+                      (change)="toggleLifeAssured()"
+                      class="custom-control-input" 
+                      formControlName="lifeAssured"
+                      id="life_assured">
+              <label class="custom-control-label" for="life_assured">Multiple Life Assured</label>
+            </div>
+          </div>
+          <div class="form-group" *ngIf="selectedLifeAssured">
+            <label for="max_assured">Max. amount of Life Assured</label>
+            <input  type="number"
+                    min="1"
+                    class="form-control"
+                    formControlName="lifeAssuredValue"
+                    id="max_assured">
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="start_date">Start Date</label>
+                <input  type="date" 
+                        id="start_date"
+                        formControlName="start_date" 
+                        class="form-control"
+                        [class.is-invalid]="start_date.invalid &&
+                                          start_date.touched">
+                  <div *ngIf="start_date.invalid && start_date.touched">
+                    <small *ngIf="start_date.errors?.required" class="text-danger">Start Date Required</small>
+                  </div>  
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="end_date">End Date</label>
+                <input  type="date" 
+                        id="end_date"
+                        formControlName="end_date" 
+                        class="form-control">
+                <div *ngIf="end_date.invalid && end_date.touched">
+                  <small *ngIf="end_date.errors?.required" class="text-danger">End Date Required</small>
+                </div>  
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="">Coverage period <sup class="text-danger">*</sup></label>
+                <textarea id="description" 
+                          rows="5" 
+                          cols="30" 
+                          class="form-control"
+                          autoResize="autoResize" 
+                          placeholder="Insert Coverage period"
+                          formControlName="coverage_period"
+                          [class.is-invalid]="coverage_period.invalid &&
+                                          coverage_period.touched"></textarea>
+                <div *ngIf="coverage_period.invalid && coverage_period.touched">
+                  <small *ngIf="coverage_period.errors?.required" class="text-danger">Coverage Period Required</small>
+                </div>  
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="">Renewal Age <sup class="text-danger">*</sup></label>
+                <textarea id="description" 
+                          rows="5" 
+                          cols="30" 
+                          class="form-control"
+                          autoResize="autoResize" 
+                          placeholder="Insert renewal age"
+                          formControlName="renewal_age"
+                          [class.is-invalid]="renewal_age.invalid &&
+                                          renewal_age.touched"></textarea>
+                <div *ngIf="renewal_age.invalid && renewal_age.touched">
+                  <small *ngIf="renewal_age.errors?.required" class="text-danger">Renewal Age Required</small>
+                </div>  
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="">Premium Payment Period <sup class="text-danger">*</sup></label>
+                <textarea id="description" 
+                          rows="5" 
+                          cols="30" 
+                          class="form-control"
+                          autoResize="autoResize" 
+                          placeholder="Insert premium payment period"
+                          formControlName="premium_payment_period"
+                          [class.is-invalid]="premium_payment_period.invalid &&
+                                              premium_payment_period.touched"></textarea>
+                <div *ngIf="premium_payment_period.invalid && premium_payment_period.touched">
+                  <small *ngIf="premium_payment_period.errors?.required" class="text-danger">Premium Payment Period Required</small>
+                </div>  
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      <div class="row text-right">
+        <div class="col-md-12">
+            <button
+              [disabled]="!addProduct.valid"
+              type="submit"
+              class="btn btn-icon icon-right btn-primary">
+              <i class="fas fa-arrow-circle-right"></i>
+            Next</button>
+        </div>
+      </div>
+        
+    </div>
+  </div>
+  
+</div>
+</div>
+
+</form>

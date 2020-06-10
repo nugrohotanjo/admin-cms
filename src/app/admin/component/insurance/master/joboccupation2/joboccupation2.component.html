@@ -1,0 +1,94 @@
+<link rel="stylesheet" href="/assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css">
+
+<div class="section-header">
+  <h1>Master Job Occupation</h1>
+  <div class="section-header-breadcrumb">
+    <div class="breadcrumb-item active"><a routeLink="/">Dashboard</a></div>
+    <div class="breadcrumb-item"><a>Master Job Occupation management</a></div>
+  </div>
+</div>
+
+<div class="section-body">
+<div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4>Job Occupation 2 Management</h4>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="joboccupation2Form" (ngSubmit)="createJobOccupation2()">
+          <input type="text" formControlName="id" class="hilang"/>
+          <div class="row mb-3">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="job_code">Job Code <sup class="text-danger">*</sup></label>
+                  <input  type="text" 
+                          id="job_code" 
+                          pInputText 
+                          class="form-control" 
+                          formControlName="job_code"
+                          [class.is-invalid]="job_code.invalid &&
+                                              job_code.touched">   
+                  <div *ngIf="job_code.invalid && job_code.touched">
+                    <small *ngIf="job_code.errors?.required" class="text-danger">Job Code Required</small>
+                  </div>  
+                </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="description">Job Description <sup class="text-danger">*</sup></label>
+                  <input  type="text" 
+                          id="description" 
+                          pInputText 
+                          class="form-control" 
+                          formControlName="description"
+                          [class.is-invalid]="description.invalid &&
+                                              description.touched">   
+                  <div *ngIf="description.invalid && description.touched">
+                    <small *ngIf="description.errors?.required" class="text-danger">Description Required</small>
+                  </div>  
+                </div>
+            </div>
+          </div>
+          <div class="row text-right">
+            <div class="col-md-12">
+                <button
+                        *ngIf="!edited"
+                        type="submit" 
+                        [disabled]="!joboccupation2Form.valid"
+                        class="btn btn-icon icon-right btn-primary">
+                        <i class="far fa-save"></i> 
+                Save</button>
+                <button
+                        *ngIf="edited"
+                        type="submit" 
+                        [disabled]="!joboccupation2Form.valid"
+                        class="btn btn-icon icon-right btn-primary">
+                        <i class="far fa-save"></i> 
+                Update</button>
+              &nbsp;
+          
+              <a (click)="resetForm()" class="btn btn-icon icon-right btn-light"><i class="fas fa-backspace"></i> Cancel</a>
+            </div>
+          </div>
+          </form>
+          <hr/>
+          <div class="row mt-5">
+            <div class="table-responsive">
+              <table id="joboccupation2Datatables" class="table table-striped dataTable no-footer">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Job Code</th>
+                    <th>Job Description</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

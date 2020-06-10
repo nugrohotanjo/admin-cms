@@ -1,0 +1,55 @@
+<div class="section-header">
+    <h1>Create Category Event</h1>
+</div>
+
+<form [formGroup]="addCategoryEvent" (ngSubmit)="createCategoryEvent()">
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+      <label for="name">Name</label>
+        <input  type="text" 
+                id="name" 
+                pInputText 
+                placeholder="Input Category Event Name here..." 
+                class="form-control" 
+                formControlName="name"
+                [class.is-invalid]="name.invalid &&
+                                    name.touched">   
+        <div *ngIf="name.invalid && name.touched">
+          <small *ngIf="name.errors?.required" class="text-danger">Category Name Required</small>
+          <small *ngIf="name.errors?.minlength" class="text-danger">Category Name Must Be Minimum 4 Character</small>
+        </div>  
+    </div>
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea 
+                id="description" 
+                rows="5" 
+                cols="30" 
+                class="form-control"
+                pInputTextarea 
+                autoResize="autoResize" 
+                placeholder="Insert description heree"
+                formControlName="description"
+                [class.is-invalid]="description.invalid &&
+                                    description.touched"></textarea>
+        <div *ngIf="description.invalid && description.touched">
+          <small *ngIf="description.errors?.required" class="text-danger">Category Description Required</small>
+        </div>  
+    </div>
+  </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <button
+                type="submit" 
+                class="btn btn-icon icon-right btn-primary"
+                [disabled]="!addCategoryEvent.valid">
+                <i class="far fa-save"></i> 
+        Save</button>
+      &nbsp;
+
+      <a routerLink="/management/event/category" class="btn btn-icon icon-right btn-light"><i class="fas fa-arrow-circle-left"></i> Cancel</a>
+    </div>
+</div>
+</form>

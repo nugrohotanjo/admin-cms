@@ -1,0 +1,169 @@
+<link rel="stylesheet" href="/assets/modules/bootstrap-daterangepicker/daterangepicker.css">
+
+<div class="section-header">
+    <h1>Step 2 Rates Specifiction</h1>
+  <!-- <h1>Step 2 Rates Specifiction {{ categoryTitle | titlecase }}</h1> -->
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4>Rate Specification</h4>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-lg-12">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" id="download-tab" data-toggle="tab" href="#download" role="tab" aria-controls="download" aria-selected="true">Download</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="upload-tab" data-toggle="tab" href="#upload" role="tab" aria-controls="upload" aria-selected="false">Upload</a>
+              </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="download" role="tabpanel" aria-labelledby="download-tab">
+                <h4>Excel Download</h4>
+                <p>Before you can upload, please download this file first as the template</p>
+                <button (click)="export()" class="btn btn-icon icon-left btn-primary"><i class="fas fa-download"></i> Download Excel</button>
+              </div>
+              <div class="tab-pane fade" id="upload" role="tabpanel" aria-labelledby="upload-tab">
+                <h4>Excel Upload</h4>
+                <p>Upload the configured rates here</p>
+                <!-- <button (click)="upload()" class="btn btn-icon icon-left btn-primary"><i class="fas fa-upload"></i> Upload</button> -->
+                <!-- <input  type="file"
+                        class="custom-file-input" 
+                        id="file"
+                        (change)="onFileChange($event)"
+                        multiple="false"
+                        accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"> -->
+                <div class="custom-file">
+                    <input  type="file" 
+                            class="custom-file-input" 
+                            id="file" 
+                            (change)="onFileChange($event)"
+                            multiple="false"
+                            accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                    <input type="text" style="display: none;"/>
+                    <label class="custom-file-label" for="file">Choose file</label>
+                </div>  
+              </div>
+            </div>
+            <hr>
+            <form [formGroup]="ProductRate" (ngSubmit)="saveRate()">
+              <input type="text" formControlName="id" class="hilang">
+              <!-- <pre>{{ ProductRate.value | json }}</pre> -->
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                      <label for="formula">Choose Formula</label>
+                      <select class="form-control" formControlName="formula" required>
+                        <option value="" selected disabled>Choose Formula</option>
+                        <option value="{{ f.id }}" *ngFor="let f of ListFormula">{{ f.formula }} </option>
+                      </select>
+                    </div>
+                    <!-- <div class="form-group">
+                      <label for="formula">Choose Promo Code</label>
+                      <select class="form-control" formControlName="promo_code">
+                        <option value="" selected disabled>Choose Promo Code</option>
+                        <option value="{{ p.id }}" *ngFor="let p of ListPromo">{{ p.promo_code }} </option>
+                      </select>
+                    </div> -->
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="box-content">
+                    <table class="table table-striped table-md">
+                      <thead>
+                        <th *ngFor = 'let h of thead'>{{h.label}}</th>
+                      </thead>
+                      <tbody formArrayName="fields">
+                        <tr *ngFor="let col of fieldsForm.controls; let i=index" [formGroupName]="i">
+                          <!-- {{ col.value | json }} -->
+                          <td *ngFor="let d of tcol; let x = index">
+                            <input *ngIf="col.value.hasOwnProperty('age') && d.label == 'age'" formControlName="age" type="number" class="form-control"  class="form-control">
+                            <input *ngIf="col.value.hasOwnProperty('number') || d.label == 'number'" formControlName="{{ d.label_name }}" type="number" class="form-control"  class="form-control" >
+                            <input *ngIf="col.value.hasOwnProperty('text') && d.label == 'text'" formControlName="{{ d.label_name }}" type="text" class="form-control"  class="form-control">
+                            <input *ngIf="col.value.hasOwnProperty('value') && d.label == 'value'" formControlName="value" type="number" class="form-control"  class="form-control">
+                            <input *ngIf="col.value.hasOwnProperty('start_date') && d.label == 'start_date'" formControlName="start_date" type="date" class="form-control"  class="form-control">
+                            <input *ngIf="col.value.hasOwnProperty('end_date') && d.label == 'end_date'" formControlName="end_date" type="date" class="form-control"  class="form-control">
+
+                            <ng-container *ngIf="ListBenefitLevel?.length > 0 && col.value.hasOwnProperty('benefit_level') && d.label == 'benefit_level'">
+                              <select formControlName="benefit_level" class="form-control" >
+                                <option value="unrelated" selected>Unrelated</option>
+                                <option value="{{ b.benefit_level }}"  *ngFor="let b of ListBenefitLevel">{{ b.benefit_level }}</option>
+                              </select>
+                            </ng-container>
+
+                            <ng-container *ngIf="ListModalFactor?.length > 0 && col.value.hasOwnProperty('modal_factor') && d.label == 'modal_factor'">
+                              <select formControlName="modal_factor" class="form-control" >
+                                <option value="unrelated" selected>Unrelated</option>
+                                <option value="{{ m.id }}"  *ngFor="let m of ListModalFactor">{{ m.modal_factor }}</option>
+                              </select>
+                            </ng-container>
+
+                            <ng-container *ngIf="col.value.hasOwnProperty('yes_or_no') || d.label == 'yes_or_no'">
+                              <select formControlName="yes_or_no" class="form-control">
+                                <option value="unrelated" selected>Unrelated</option>
+                                <option value="yes" >Yes</option>
+                                <option value="no"  >No</option>
+                              </select>
+                            </ng-container>
+
+                            <ng-container *ngIf="col.value.hasOwnProperty('multiple_choice') || d.label == 'multiple_choice'">
+                              <select formControlName="{{ d.label_name }}" class="form-control">
+                                <option value="unrelated" selected>Unrelated</option>
+                                <option value="{{ v }}" *ngFor="let v of d.value"> {{ v }}</option>
+                              </select>
+                            </ng-container>
+
+                          </td>
+                        </tr>
+                          
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="col-md-1">
+                    <button type="button"
+                      *ngIf="tdata.length > 0 "
+                      (click)="tambahRow()"
+                      class="btn btn-primary btn-sm">
+                    <i class="fas fa-plus"></i>
+                    Add Row
+                    </button>
+                  </div>
+                  
+                  <div class="col-md-1">
+                    <button type="button" 
+                        *ngIf="tdata.length > 0 "
+                        (click)="removeRow()" 
+                        class="btn btn-danger">Remove Row</button>
+                  </div>
+                </div>
+              </div>
+              
+              
+              <div class="row text-right">
+                <div class="col-md-12">
+                    <button
+                      type="button"
+                      routerLink="/{{prefix}}/product/add/category/{{Type}}/{{Category_id}}/{{ProductId}}"
+                      class="btn btn-icon icon-right btn-light">
+                        <i class="fas fa-arrow-circle-left"></i>
+                    Back</button>
+                    &nbsp;
+                    <button
+                      type="submit"
+                      class="btn btn-icon icon-right btn-primary">
+                        <i class="fas fa-arrow-circle-right"></i>
+                    Next</button>
+                </div>
+              </div>
+              </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

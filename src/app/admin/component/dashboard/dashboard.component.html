@@ -1,0 +1,171 @@
+<div class="section-header">
+    <h1>Dashboard</h1>
+  </div>
+  <div class="row">
+    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+      <div class="card card-statistic-1">
+        <div class="card-icon bg-primary">
+          <i class="fas fa-shopping-cart"></i>
+        </div>
+        <div class="card-wrap">
+          <div class="card-header">
+            <h4>Purchased</h4>
+          </div>
+          <div class="card-body">
+            {{ Transaction?.total }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+      <div class="card card-statistic-1">
+        <div class="card-icon bg-success">
+          <i class="far fa-hand-pointer"></i>
+        </div>
+        <div class="card-wrap">
+          <div class="card-header">
+            <h4>CTA</h4>
+          </div>
+          <div class="card-body">
+            {{ Cta?.total }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+      <div class="card card-statistic-1">
+        <div class="card-icon bg-secondary">
+          <i class="fas fa-retweet"></i>
+        </div>
+        <div class="card-wrap">
+          <div class="card-header">
+            <h4>Reffence</h4>
+          </div>
+          <div class="card-body">
+            {{ MemberGetMember?.total }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+      <div class="card card-statistic-1">
+        <div class="card-icon bg-info">
+          <i class="fas fa-copy"></i>
+        </div>
+        <div class="card-wrap">
+          <div class="card-header">
+            <h4>Booking Policy</h4>
+          </div>
+          <div class="card-body">
+            {{ AmountBookingEpolicy }}
+          </div>
+        </div>
+      </div>
+    </div>     
+    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+      <div class="card card-statistic-1">
+        <div class="card-icon bg-success">
+          <i class="far fa-calendar-check"></i>
+        </div>
+        <div class="card-wrap">
+          <div class="card-header">
+            <h4>E-Policy Success</h4>
+          </div>
+          <div class="card-body">
+            {{ EpolicyDelivery?.Success }}
+          </div>
+        </div>
+      </div>
+    </div> 
+    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+      <div class="card card-statistic-1">
+        <div class="card-icon bg-warning">
+          <i class="far fa-calendar-times"></i>
+        </div>
+        <div class="card-wrap">
+          <div class="card-header">
+            <h4>E-Policy Fail</h4>
+          </div>
+          <div class="card-body">
+            {{ EpolicyDelivery?.Failed }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+      <div class="card card-statistic-1">
+        <div class="card-icon bg-secondary">
+          <i class="fas fa-money-bill-alt"></i>
+        </div>
+        <div class="card-wrap">
+          <div class="card-header">
+            <h4>Payment</h4>
+          </div>
+          <div class="card-body">
+            Rp. {{ Amount }},-
+          </div>
+        </div>
+      </div>
+    </div>
+         
+  </div>
+<div class="row">
+  <!-- <div class="col-md-6">
+    <div class="card">
+      <div class="card-header">
+        <h4>Visitor</h4>
+      </div>
+      <div class="card-body">
+        <canvas id="examChart"></canvas>
+      </div>
+    </div>
+  </div> -->
+  <!-- <div class="col-md-6">
+    <div class="card">
+      <div class="card-header">
+        <h4>Claim</h4>
+      </div>
+      <div class="card-body">
+        <div class="summary">
+          <div class="summary-item">
+            <ul class="list-unstyled list-unstyled-border">
+              <li class="media">
+                <a href="#">
+                    <img class="mr-3 rounded-circle" width="50" src="assets/img/avatar/avatar-1.png" alt="avatar">
+                </a>
+                <div class="media-body">
+                  <div class="media-right"><button class="btn btn-primary">View</button></div>
+                  <div class="media-title"><a href="#">Simple Start - Silver</a></div>
+                  <div class="text-muted text-small">by <a href="#">Rizky Nugroho</a> <div class="bullet"></div> Sunday</div>
+                </div>
+              </li>
+              <li class="media">
+                <a href="#">
+                    <img class="mr-3 rounded-circle" width="50" src="assets/img/avatar/avatar-2.png" alt="avatar">
+                </a>
+                <div class="media-body">
+                  <div class="media-right"><button class="btn btn-primary">View</button></div>
+                  <div class="media-title"><a href="#">Simple Start - Gold</a></div>
+                  <div class="text-muted text-small">by <a href="#">Rizky Nugroho</a> <div class="bullet"></div> Sunday
+                  </div>
+                </div>
+              </li>
+              <li class="media">
+                <a href="#">
+                  <img class="mr-3 rounded-circle" width="50" src="assets/img/avatar/avatar-3.png" alt="avatar">
+                </a>
+                <div class="media-body">
+                  <div class="media-right"><button class="btn btn-primary">View</button></div>
+                  <div class="media-title"><a href="#">Simple Start - Platinum</a></div>
+                  <div class="text-muted text-small">by <a href="#">Rizky Nugroho</a> <div class="bullet"></div> Tuesday
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div> -->
+</div>

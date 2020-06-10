@@ -1,0 +1,225 @@
+<link rel="stylesheet" href="/assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css">
+
+<div class="section-header">
+  <h1>Scheduler Time</h1>
+  <div class="section-header-breadcrumb">
+    <div class="breadcrumb-item active"><a routeLink="/">Dashboard</a></div>
+    <div class="breadcrumb-item"><a>Scheduler Time</a></div>
+  </div>
+</div>
+
+<div class="section-body">
+<div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4>Scheduler Time Management</h4>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="schedulerForm" (ngSubmit)="createScheduler()">
+          <input type="text" formControlName="id" class="hilang"/>
+          <div class="row">
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="name">Name <sup class="text-danger">*</sup></label>
+                  <input  type="text" 
+                          id="name" 
+                          pInputText 
+                          class="form-control" 
+                          formControlName="name"
+                          [class.is-invalid]="name.invalid &&
+                                              name.touched">   
+                  <div *ngIf="name.invalid && name.touched">
+                    <small *ngIf="name.errors?.required" class="text-danger">Name Required</small>
+                  </div>  
+                </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="code">Code <sup class="text-danger">*</sup></label>
+                  <input  type="text" 
+                          id="code" 
+                          pInputText 
+                          class="form-control" 
+                          formControlName="code"
+                          [class.is-invalid]="code.invalid &&
+                                              code.touched">   
+                  <div *ngIf="code.invalid && code.touched">
+                    <small *ngIf="code.errors?.required" class="text-danger">Code Required</small>
+                  </div>  
+                </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="hour">Hour <sup class="text-danger">*</sup></label>
+                <select formControlName="hour"
+                        [class.is-invalid]="hour.invalid && hour.touched" 
+                        class="form-control" 
+                        id="hour">
+                  <option value="" selected disabled>Choose Hour</option>
+                  <option value="0">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                  <option value="21">21</option>
+                  <option value="22">22</option>
+                  <option value="23">23</option>
+                </select>
+                  <div *ngIf="hour.invalid && hour.touched">
+                    <small *ngIf="hour.errors?.required" class="text-danger">Hour Required</small>
+                  </div>  
+                </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="minute">Minute <sup class="text-danger">*</sup></label>
+                  <select formControlName="minute"
+                          [class.is-invalid]="minute.invalid && minute.touched" 
+                          class="form-control" 
+                          id="minute">
+                          <option value="" selected disabled>Choose Minute</option>
+                          <option value="0">0</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                          <option value="7">7</option>
+                          <option value="8">8</option>
+                          <option value="9">9</option>
+                          <option value="10">10</option>
+                          <option value="11">11</option>
+                          <option value="12">12</option>
+                          <option value="13">13</option>
+                          <option value="14">14</option>
+                          <option value="15">15</option>
+                          <option value="16">16</option>
+                          <option value="17">17</option>
+                          <option value="18">18</option>
+                          <option value="19">19</option>
+                          <option value="20">20</option>
+                          <option value="21">21</option>
+                          <option value="22">22</option>
+                          <option value="23">23</option>
+                          <option value="24">24</option>
+                          <option value="25">25</option>
+                          <option value="26">26</option>
+                          <option value="27">27</option>
+                          <option value="28">28</option>
+                          <option value="29">29</option>
+                          <option value="30">30</option>
+                          <option value="31">31</option>
+                          <option value="32">32</option>
+                          <option value="33">33</option>
+                          <option value="34">34</option>
+                          <option value="35">35</option>
+                          <option value="36">36</option>
+                          <option value="37">37</option>
+                          <option value="38">38</option>
+                          <option value="39">39</option>
+                          <option value="40">40</option>
+                          <option value="41">41</option>
+                          <option value="42">42</option>
+                          <option value="43">43</option>
+                          <option value="44">44</option>
+                          <option value="45">45</option>
+                          <option value="46">46</option>
+                          <option value="47">47</option>
+                          <option value="48">48</option>
+                          <option value="49">49</option>
+                          <option value="50">50</option>
+                          <option value="51">51</option>
+                          <option value="52">52</option>
+                          <option value="53">53</option>
+                          <option value="54">54</option>
+                          <option value="55">55</option>
+                          <option value="56">56</option>
+                          <option value="57">57</option>
+                          <option value="58">58</option>
+                          <option value="59">59</option>
+                  </select>
+                <div *ngIf="minute.invalid && minute.touched">
+                  <small *ngIf="minute.errors?.required" class="text-danger">Minute Required</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="description">Description </label>
+                <textarea 
+                    id="description" 
+                    rows="5" 
+                    cols="30" 
+                    class="form-control"
+                    pInputTextarea 
+                    autoResize="autoResize" 
+                    placeholder="Insert description here"
+                    formControlName="description"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="row text-right">
+            <div class="col-md-12">
+                <button
+                        *ngIf="!edited"
+                        type="submit" 
+                        [disabled]="!schedulerForm.valid"
+                        class="btn btn-icon icon-right btn-primary">
+                        <i class="far fa-save"></i> 
+                Save</button>
+                <button
+                        *ngIf="edited"
+                        type="submit" 
+                        [disabled]="!schedulerForm.valid"
+                        class="btn btn-icon icon-right btn-primary">
+                        <i class="far fa-save"></i> 
+                Update</button>
+              &nbsp;
+          
+              <a (click)="resetForm()" class="btn btn-icon icon-right btn-light"><i class="fas fa-backspace"></i> Cancel</a>
+            </div>
+          </div>
+          </form>
+          <div class="row mt-5">
+            <div class="table-responsive">
+              <table id="schedulerDatatables" class="table table-striped dataTable no-footer">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Hour</th>
+                    <th>Minute</th>
+                    <th>Description</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

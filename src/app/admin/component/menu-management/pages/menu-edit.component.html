@@ -1,0 +1,66 @@
+<div class="section-header">
+  <h1>Edit Menu</h1>
+</div>
+
+<form [formGroup]="editMenu" (ngSubmit)="updateMenu()">
+<div class="row">
+<div class="col-md-6">
+  <div class="form-group">
+    <label for="name">Name</label>
+      <input  type="text" 
+              id="name" 
+              pInputText 
+              placeholder="Insert link name here..." 
+              class="form-control" 
+              formControlName="name"
+              [class.is-invalid]="name.invalid &&
+                                  name.touched">   
+      <div *ngIf="name.invalid && name.touched">
+        <small *ngIf="name.errors?.required" class="text-danger">Name Required</small>
+      </div>  
+  </div>
+  <div class="form-group">
+    <label for="type">Type</label>
+    <select formControlName="type"
+            id="type"
+            class="form-control"
+            [class.is-invalid]="type.invalid &&
+                                type.touched">
+      <option value="" selected disabled>Choose Type</option>
+      <option value="header">Header</option>
+      <option value="footer">Footer</option>
+    </select>
+    <div *ngIf="type.invalid && type.touched">
+      <small *ngIf="type.errors?.required" class="text-danger">Type Required</small>
+    </div>  
+  </div>
+  <div class="form-group">
+    <label for="link">Link</label>
+    <input  type="text" 
+            id="link" 
+            pInputText 
+            placeholder="Insert Link here..." 
+            class="form-control" 
+            formControlName="link"
+            [class.is-invalid]="link.invalid &&
+                                link.touched">   
+    <div *ngIf="link.invalid && link.touched">
+      <small *ngIf="link.errors?.required" class="text-danger">Link Required</small>
+    </div>  
+  </div>
+</div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+      <button
+              type="submit" 
+              class="btn btn-icon icon-right btn-primary"
+              [disabled]="!editMenu.valid">
+              <i class="far fa-save"></i> 
+      Save</button>
+    &nbsp;
+
+    <a routerLink="/{{prefix}}/menu" class="btn btn-icon icon-right btn-light"><i class="fas fa-arrow-circle-left"></i> Cancel</a>
+  </div>
+</div>
+</form>

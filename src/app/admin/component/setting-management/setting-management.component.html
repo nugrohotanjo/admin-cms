@@ -1,0 +1,257 @@
+<div class="section-header">
+  <h1>Global Setting</h1>
+  <div class="section-header-breadcrumb">
+    <div class="breadcrumb-item active"><a routeLink="/">Dashboard</a></div>
+    <div class="breadcrumb-item"><a>Global Setting</a></div>
+  </div>
+</div>
+<form [formGroup]="settingForm" (ngSubmit)="settingApply()">
+<div class="col-12">
+  <div class="card">
+    <div class="card-header">
+      <h4>Setting Information</h4>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-3">
+          <ul class="nav nav-pills flex-column" id="myTab4" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="main_configuration_tabs" data-toggle="tab" href="#main_configuration" role="tab" aria-controls="main_configuration" aria-selected="true">Main Configuration</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="company_information_tabs" data-toggle="tab" href="#company_information" role="tab" aria-controls="company_information" aria-selected="true">Company Information</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="footer_tabs" data-toggle="tab" href="#footer" role="tab" aria-controls="footer" aria-selected="true">Footer</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="seo_tabs" data-toggle="tab" href="#seo" role="tab" aria-controls="seo" aria-selected="true">SEO</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-12 col-sm-12 col-md-9">
+          <div class="tab-content no-padding" id="myTab2Content">
+            <div class="tab-pane fade show active" id="main_configuration" role="tabpanel" aria-labelledby="main_configuration_tabs">
+              <div class="form-group">
+                <label for="site_name">Site Name</label>
+                  <input  type="text" 
+                          id="site_name" 
+                          pInputText 
+                          placeholder="Insert site name here..." 
+                          class="form-control" 
+                          formControlName="site_name">   
+              </div>
+              <div class="form-group">
+                <label for="site_description">Site Desription</label>
+                  <input  type="text" 
+                          id="site_description" 
+                          pInputText 
+                          placeholder="Insert site description here..." 
+                          class="form-control" 
+                          formControlName="site_description">   
+              </div>
+              <div class="form-group">
+                <label for="logo">Logo</label>
+                  <div class="custom-file">
+                    <input  type="file" 
+                            class="custom-file-input" 
+                            id="logo" 
+                            (change)="selectFile($event, 'logo')"
+                            accept="image/x-png,image/jpeg">
+                    <input type="text" formControlName="logo" style="display: none;"/>
+                    <label class="custom-file-label" for="logo">Choose file</label>
+                  </div>  
+                  <img [src]="logoUrl" *ngIf="logoUrl != null" width="50px" height="50px" />
+              </div>
+              <div class="form-group">
+                <label for="logo_transparent">Logo Transparent</label>
+                  <div class="custom-file">
+                    <input  type="file" 
+                            class="custom-file-input" 
+                            id="logo_transparent" 
+                            (change)="selectFile($event, 'logo_transparent')"
+                            accept="image/x-png,image/jpeg">
+                    <input type="text" formControlName="logo_transparent" style="display: none;"/>
+                    <label class="custom-file-label" for="logo_transparent">Choose file</label>
+                  </div>  
+                  <img [src]="logoTransparentUrl" *ngIf="logoTransparentUrl != null" width="50px" height="50px" />
+              </div>
+              <div class="form-group">
+                <label for="favicon">Favicon</label>
+                  <div class="custom-file">
+                    <input  type="file" 
+                            class="custom-file-input" 
+                            id="favicon" 
+                            (change)="selectFile($event, 'favicon')"
+                            accept="image/x-png,image/jpeg">
+                    <input type="text" formControlName="favicon" style="display: none;"/>
+                    <label class="custom-file-label" for="favicon">Choose file</label>
+                  </div>  
+                  <img [src]="faviconUrl" *ngIf="faviconUrl != null" width="50px" height="50px" />
+              </div>
+              <div class="form-group">
+                  <label for="google_analytic">Google Analytic</label>
+                  <textarea 
+                          id="google_analytic" 
+                          rows="10" 
+                          cols="30" 
+                          class="form-control"
+                          pInputTextarea 
+                          autoResize="autoResize" 
+                          placeholder="Insert google analytic heree"
+                          formControlName="google_analytic"></textarea> 
+              </div>
+            </div>
+            <div class="tab-pane fade" id="company_information" role="tabpanel" aria-labelledby="company_information_tabs">
+              <div class="form-group">
+                <label for="company_name">Company Name</label>
+                  <input  type="text" 
+                          id="company_name" 
+                          pInputText 
+                          placeholder="Insert company name here..." 
+                          class="form-control" 
+                          formControlName="company_name">   
+              </div>
+              <div class="form-group">
+                <label for="company_phone">Company Phone</label>
+                  <input  type="text" 
+                          id="company_phone" 
+                          pInputText 
+                          placeholder="Insert company phone here..." 
+                          class="form-control" 
+                          formControlName="company_phone">   
+              </div>
+              <div class="form-group">
+                <label for="company_fax">Company Fax</label>
+                  <input  type="text" 
+                          id="company_fax" 
+                          pInputText 
+                          placeholder="Insert company fax here..." 
+                          class="form-control" 
+                          formControlName="company_fax">   
+              </div>
+              <div class="form-group">
+                <label for="company_email">Company Email</label>
+                  <input  type="text" 
+                          id="company_email" 
+                          pInputText 
+                          placeholder="Insert company email here..." 
+                          class="form-control" 
+                          formControlName="company_email">   
+              </div>
+              <div class="form-group">
+                <label for="company_whatsapp">Company Whatsapp</label>
+                  <input  type="text" 
+                          id="company_whatsapp" 
+                          pInputText 
+                          placeholder="Insert company whatsapp here..." 
+                          class="form-control" 
+                          formControlName="company_whatsapp">   
+              </div>
+              <div class="form-group">
+                  <label for="company_address">Company Address</label>
+                  <textarea 
+                          id="company_address" 
+                          rows="10" 
+                          cols="30" 
+                          class="form-control"
+                          pInputTextarea 
+                          autoResize="autoResize" 
+                          placeholder="Insert company address here"
+                          formControlName="company_address"></textarea> 
+              </div>
+            </div>
+            <div class="tab-pane fade" id="footer" role="tabpanel" aria-labelledby="footer_tabs">
+              <div class="form-group">
+                  <label for="company_description">Company Description</label>
+                  <textarea 
+                          id="company_description" 
+                          rows="10" 
+                          cols="30" 
+                          class="form-control"
+                          pInputTextarea 
+                          autoResize="autoResize" 
+                          placeholder="Insert company description here"
+                          formControlName="company_description"></textarea> 
+              </div>
+              <div class="form-group">
+                <label for="facebook_url">Facebook Url</label>
+                  <input  type="text" 
+                          id="facebook_url" 
+                          pInputText 
+                          placeholder="Insert facebook Url here..." 
+                          class="form-control" 
+                          formControlName="facebook_url">   
+              </div>
+              <div class="form-group">
+                <label for="twitter_url">Twitter Url</label>
+                  <input  type="text" 
+                          id="twitter_url" 
+                          pInputText 
+                          placeholder="Insert twitter Url here..." 
+                          class="form-control" 
+                          formControlName="twitter_url">   
+              </div>
+              <div class="form-group">
+                <label for="youtube_url">Youtube Url</label>
+                  <input  type="text" 
+                          id="youtube_url" 
+                          pInputText 
+                          placeholder="Insert youtube Url here..." 
+                          class="form-control" 
+                          formControlName="youtube_url">   
+              </div>
+              <div class="form-group">
+                <label for="instagram_url">Instagram Url</label>
+                  <input  type="text" 
+                          id="instagram_url" 
+                          pInputText 
+                          placeholder="Insert instagram Url here..." 
+                          class="form-control" 
+                          formControlName="instagram_url">   
+              </div>
+            </div>
+            <div class="tab-pane fade" id="seo" role="tabpanel" aria-labelledby="seo_tabs">
+              <div class="form-group">
+                  <label for="meta_description">Meta Description</label>
+                  <textarea 
+                          id="meta_description" 
+                          rows="10" 
+                          cols="30" 
+                          class="form-control"
+                          pInputTextarea 
+                          autoResize="autoResize" 
+                          placeholder="Insert meta description here"
+                          formControlName="meta_description"></textarea> 
+              </div>
+              <div class="form-group">
+                  <label for="meta_keyword">Meta Keyword</label>
+                  <textarea 
+                          id="meta_keyword" 
+                          rows="10" 
+                          cols="30" 
+                          class="form-control"
+                          pInputTextarea 
+                          autoResize="autoResize" 
+                          placeholder="Insert meta keyword here"
+                          formControlName="meta_keyword"></textarea> 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-5">
+          <div class="col-md-4">
+              <button
+                      type="submit" 
+                      class="btn btn-icon icon-right btn-primary"
+                      [disabled]="!settingForm.valid">
+                      <i class="far fa-save"></i> 
+              Save</button>
+            &nbsp;
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+</form>

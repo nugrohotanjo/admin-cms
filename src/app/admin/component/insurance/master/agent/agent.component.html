@@ -1,0 +1,104 @@
+<link rel="stylesheet" href="/assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css">
+
+<div class="section-header">
+  <h1>Master Agent</h1>
+  <div class="section-header-breadcrumb">
+    <div class="breadcrumb-item active"><a routeLink="/">Dashboard</a></div>
+    <div class="breadcrumb-item"><a>Master Agent management</a></div>
+  </div>
+</div>
+
+<div class="section-body">
+<div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4>Agent Management</h4>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="agentForm" (ngSubmit)="createAgent()">
+          <input type="text" formControlName="id" class="hilang"/>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="agent_code">Agent Code <sup class="text-danger">*</sup></label>
+                  <input  type="text" 
+                          id="agent_code" 
+                          pInputText 
+                          class="form-control" 
+                          formControlName="agent_code"
+                          [class.is-invalid]="agent_code.invalid &&
+                                              agent_code.touched">   
+                  <div *ngIf="agent_code.invalid && agent_code.touched">
+                    <small *ngIf="agent_code.errors?.required" class="text-danger">Agent Code Required</small>
+                  </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="agent_name">Agent Name <sup class="text-danger">*</sup></label>
+                  <input  type="text" 
+                          id="agent_name" 
+                          pInputText 
+                          class="form-control" 
+                          formControlName="agent_name"
+                          [class.is-invalid]="agent_name.invalid &&
+                                              agent_name.touched">   
+                  <div *ngIf="agent_name.invalid && agent_name.touched">
+                    <small *ngIf="agent_name.errors?.required" class="text-danger">Agent Name Required</small>
+                  </div>  
+                </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="control-label">Agent Status</div>
+              <label class="custom-switch mt-2">
+                  <input type="checkbox" formControlName="agent_status" class="custom-switch-input">
+                  <span class="custom-switch-indicator"></span>
+                </label>
+            </div>
+          </div>
+          <div class="row text-right">
+            <div class="col-md-12">
+                <button
+                        *ngIf="!edited"
+                        type="submit" 
+                        [disabled]="!agentForm.valid"
+                        class="btn btn-icon icon-right btn-primary">
+                        <i class="far fa-save"></i> 
+                Save</button>
+                <button
+                        *ngIf="edited"
+                        type="submit" 
+                        [disabled]="!agentForm.valid"
+                        class="btn btn-icon icon-right btn-primary">
+                        <i class="far fa-save"></i> 
+                Update</button>
+              &nbsp;
+          
+              <a (click)="resetForm()" class="btn btn-icon icon-right btn-light"><i class="fas fa-backspace"></i> Cancel</a>
+            </div>
+          </div>
+          </form>
+          <div class="row mt-5">
+            <div class="table-responsive">
+              <table id="agentDatatables" class="table table-striped dataTable no-footer">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Agent Code</th>
+                    <th>Agent Name</th>
+                    <th>Agent Status</th>
+                    <th>Update By</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

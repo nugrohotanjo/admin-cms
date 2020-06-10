@@ -1,0 +1,13 @@
+.box-content
+{
+    overflow-x:scroll;
+}
+
+.table {
+    overflow-x:scroll;
+    width: 2000px;
+}
+
+.hilang{
+    display : none;
+}

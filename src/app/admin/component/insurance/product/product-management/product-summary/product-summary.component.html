@@ -1,0 +1,276 @@
+<div class="section-header">
+  <h1 *ngIf="Type != 'rider'">Step 9 Product Summary (FINAL)</h1>
+  <h1 *ngIf="Type === 'rider'">Step 5 Rider Summary (FINAL)</h1>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4>Summary Product</h4>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-12">
+            <h5>Product</h5>
+            <table class="table">
+              <tr>
+                <td> <strong>Product Name</strong>  </td>
+                <td> : {{ product_data.product_name }}</td>
+              </tr>
+              <tr *ngIf="Type != 'rider'">
+                <td> <strong>Plan Name</strong> </td>
+                <td> : {{ product_data.name }}</td>
+              </tr>
+              <tr>
+                <td> <strong>Product Type</strong> </td>
+                <td> : {{ product_data.product_type }}</td>
+              </tr>
+              <tr>
+                <td> <strong>Product Category</strong> </td>
+                <td> : {{ product_data.category_product?.category_name}}</td>
+              </tr>
+              <tr>
+                <td> <strong>Product Core ID</strong> </td>
+                <td> : {{ product_data.product_core_id }}</td>
+              </tr>
+              <tr>
+                <td> <strong>Product Core CODE</strong> </td>
+                <td> : {{ product_data.product_core_code }}</td>
+              </tr>
+              <tr>
+                <td> <strong>Product Description</strong> </td>
+                <td> : {{ product_data.description }}</td>
+              </tr>
+              <tr>
+                <td> <strong>Payment Business</strong> </td>
+                <td>
+                  <ul>
+                    <li *ngFor="let p of product_data.paymentBusiness">{{ p.method_name }}</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td> <strong>Payment Renewal</strong> </td>
+                <td>
+                  <ul>
+                    <li *ngFor="let p of product_data.paymentRenewal">{{ p.method_name }}</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td> <strong>Currency</strong>  </td>
+                <td> : {{ product_data.currency_product.name }}</td>
+              </tr>
+              <tr>
+                <td> <strong>Product Multiple Beneficiary</strong> </td>
+                <td> : {{ product_data.multiple_beneficiary ? 'Yes' : 'No' }}</td>
+              </tr>
+              <tr>
+                <td> <strong>Product Multiple Life Assured</strong> </td>
+                <td> : {{ product_data.multiple_life_assured ? 'Yes' : 'No' }}</td>
+              </tr>
+              <tr *ngIf="product_data.multiple_life_assured_value != null && product_data.multiple_life_assured_value != ''">
+                <td> <strong>Product Multiple Life Assured Unit</strong> </td>
+                <td> : {{ product_data.multiple_life_assured_value }}</td>
+              </tr>
+              <tr>
+                <td><strong>Start Date</strong></td>
+                <td>: {{ product_data.start_date }}</td>
+              </tr>
+              <tr>
+                <td><strong>End Date</strong></td>
+                <td>: {{ product_data.end_date }}</td>
+              </tr>
+              <!-- <tr *ngIf="product_data.multiple_life_assured_value != null && product_data.multiple_life_assured_value != ''">
+                <td> <strong>Product Multiple Life Assured Unit</strong> </td>
+                <td> : {{ product_data.multiple_life_assured_value }}</td>
+              </tr> -->
+            </table>
+          </div>
+          <br/>
+          <div class="col-md-12">
+            <h5>Rate</h5>
+            <!-- <pre>{{ ListMasterRate | json }}</pre> -->
+            <div class="table-responsive">
+              <table class="table table-sm">
+                <tr *ngIf="rate_data.formula_id">
+                  <th>Formula</th><td>: {{ rate_data.formula_id.formula }}</td>
+                </tr>
+              </table>
+            </div>
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                    <th *ngIf="rate_param_data != undefined || rate_param_data != null">Age</th>
+                    <th *ngFor="let m of ListMasterRate"> {{ m.parameter_name }}</th>
+                    <th *ngIf="rate_param_data != undefined || rate_param_data != null">Value</th>
+                    <th *ngIf="rate_param_data != undefined || rate_param_data != null">Start Date</th>
+                    <th *ngIf="rate_param_data != undefined || rate_param_data != null">End Date</th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let x of ListRateBody">
+                    <td *ngFor="let z of x">
+                      {{ z === "" ? 'unrelated' : z }}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <br/>
+          <div class="col-md-12">
+            <h5>Modal Factor</h5>
+            <table class="table">
+              <thead>
+                <th>
+                  Payment Term
+                </th>
+                <th>
+                  Modal Factor
+                </th>
+                <th>
+                  Status
+                </th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let m of ListModalFactor">
+                  <td>{{ m.modalFactor_id.frequency }}</td>
+                  <td>{{ m.value }}</td>
+                  <td>{{ m.payment_term_status === 0 ? 'Not Active' : 'Active' }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-md-12" *ngIf="Type != 'rider'">
+            <h5>Rider</h5>
+            <table class="table">
+              <thead>
+                <th>Rider Name</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let r of rider_data">
+                  <td>{{ r.product_name }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <br/>
+          <div class="col-md-12" *ngIf="Type != 'rider'">
+            <h5>Promotion</h5>
+            <table class="table">
+              <thead>
+                <th>Promo Name</th>
+                <th>Promo Code</th>
+                <th>Promo Type</th>
+                <th>Promo Value</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let p of ListPromotion">
+                  <td>{{ p.promo_code_id.promo_name }}</td>
+                  <td>{{ p.promo_code_id.promo_code }}</td>
+                  <td>{{ p.promo_code_id.promo_type }}</td>
+                  <td>{{ p.promo_code_id.promo_value }}</td>
+                  <td>{{ p.promo_code_id.start_date }}</td>
+                  <td>{{ p.promo_code_id.end_date }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <br/>
+          <div class="col-md-12" *ngIf="Type != 'rider'">
+            <h5>Benefit</h5>
+            <table class="table">
+              <thead>
+                <th>Benefit Name</th>
+                <th>Benefit Value</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let b of benefit_data">
+                  <td>{{ b.benefit_id.benefit_name }}</td>
+                  <td>{{ b.value }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <br/>
+          <div class="col-md-12">
+            <h5>Parameterize</h5>
+            <table class="table">
+                <!-- <pre>{{ parameterize_data | json }}</pre> -->
+              <tbody>
+                <tr>
+                  <th style="width: 10%;">Policy Holder Min Age</th> 
+                  <td style="width: 10%;">: {{ parameterize_data.min_age }}</td>
+                </tr>
+                <tr>
+                  <th style="width: 10%;">Policy Holder Max Age</th>
+                  <td style="width: 10%;">: {{ parameterize_data.max_age }}</td>
+                </tr>
+                <tr>
+                  <th style="width: 10%;">Insured Min Age</th> 
+                  <td style="width: 10%;">: {{ parameterize_data.min_age_insured }}</td>
+                </tr>
+                <tr>
+                  <th style="width: 10%;">Insured Max Age</th>
+                  <td style="width: 10%;">: {{ parameterize_data.max_age_insured }}</td>
+                </tr>
+                <tr>
+                  <th style="width: 10%;">Join Insured Min Age</th> 
+                  <td style="width: 10%;">: {{ parameterize_data.min_age_join_insured }}</td>
+                </tr>
+                <tr>
+                  <th style="width: 10%;">Join Insured Max Age</th>
+                  <td style="width: 10%;">: {{ parameterize_data.max_age_join_insured }}</td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <table class="table" *ngIf="Type != 'rider'">
+              <thead>
+                <th>Code</th>
+                <th>Questionnaire</th>
+                <th>Answer</th>
+              </thead>
+             <tbody>
+              <tr *ngFor="let u of ListUnderwriting">
+                <td>{{ u.underwriting_code }} </td>
+                <td>{{ u.underwriting_questions }} </td>
+                <td>{{ u.answer }}</td>
+              </tr>
+             </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="row text-right">
+          <div class="col-md-12">
+            <button
+            *ngIf="Type == 'rider'"
+              type="button"
+              routerLink="/{{prefix}}/product/add/parameterize/{{Type}}/{{Category}}/{{Id}}"
+              class="btn btn-icon icon-right btn-light">
+                <i class="fas fa-arrow-circle-left"></i>
+            Back</button>
+            <button
+              *ngIf="Type != 'rider'"
+              type="button"
+              routerLink="/{{prefix}}/product/add/exclusion/{{Type}}/{{Category}}/{{Id}}"
+              class="btn btn-icon icon-right btn-light">
+                <i class="fas fa-arrow-circle-left"></i>
+            Back</button>
+            &nbsp;
+            <button type="button"
+                    (click)="saveForApproval()"
+                    class="btn btn-primary">
+                    <i class="fas fa-clipboard-check"></i>
+              Save for Approval
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

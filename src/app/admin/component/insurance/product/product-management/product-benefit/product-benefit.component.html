@@ -1,0 +1,74 @@
+<div class="section-header">
+  <h1>Step 5 Benefit List</h1>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form [formGroup]="BenefitForm" (ngSubmit)="saveProductBenefit()">
+    <div class="card">
+      <div class="card-header">
+        <h4>Benefit List</h4>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-lg-12">
+            <table class="table table-striped table-md">
+              <thead>
+                <th>No</th>
+                <th>Benefit</th>
+                <th>Benefit Value</th>
+                <th>Position</th>
+              </thead>
+              <tbody formArrayName="benefits">
+                <tr *ngFor="let d of t.controls; let i = index " [formGroupName]="i">
+                  <td style="width: 10%">{{ i + 1 }}</td>
+                  <td style="width: 35%">
+                    <select formControlName="id" id="" class="form-control">
+                      <option value="" selected disabled>Choose Benefit</option>
+                        <option value="{{ b.id }}" *ngFor="let b of ListBenefit" >{{ b.benefit_name }}</option>
+
+                    </select>
+                  </td>
+                  <td style="width: 35%">
+                    <input formControlName="value" type="text" class="form-control" >
+                  </td>
+                  <td style="width: 20%">
+                    <input formControlName="position" type="number" class="form-control" >
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-md-1">
+            <button type="button" (click)="addRow()" class="btn btn-primary">Add Row</button>
+          </div>
+          <div class="col-md-1">
+            <button type="button" (click)="removeRow()" class="btn btn-danger">Remove Row</button>
+          </div>
+        </div>
+        <div class="row text-right">
+          <div class="col-md-12">
+              <button
+                type="button"
+                routerLink="/{{prefix}}/product/add/promo/{{Type}}/{{Category_id}}/{{ProductId}}"
+                class="btn btn-icon icon-right btn-light">
+                  <i class="fas fa-arrow-circle-left"></i>
+              Back</button>
+              &nbsp;
+              <button
+                type="submit"
+                class="btn btn-icon icon-right btn-primary">
+                  <i class="fas fa-arrow-circle-right"></i>
+              Next</button>
+          </div>
+        </div>
+      </div>
+  
+      
+    </div>
+    </form>
+    
+    
+    
+  </div>
+</div>

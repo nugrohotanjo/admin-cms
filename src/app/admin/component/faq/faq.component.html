@@ -1,0 +1,106 @@
+<link rel="stylesheet" href="/assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css">
+
+<div class="section-header">
+  <h1>FAQ Management</h1>
+  <div class="section-header-breadcrumb">
+    <div class="breadcrumb-item active"><a routeLink="/">Dashboard</a></div>
+    <div class="breadcrumb-item"><a>FAQ management</a></div>
+  </div>
+</div>
+
+<div class="section-body">
+<div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4>FAQ Management</h4>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="faqForm" (ngSubmit)="createFaq()">
+          <input type="text" formControlName="id" class="hilang"/>
+          <div class="row">
+            <div class="col-md-8">
+              <div class="form-group">
+                <label for="">Category</label>
+                <select formControlName="category" class="form-control">
+                  <option value="" selected disabled>Choose Category</option>
+                  <option value="general">General</option>
+                  <option value="simple-start">Avrist Simple Start</option>
+                  <option value="avrist-simple-life">Avrist Simple Life</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8">
+              <div class="form-group">
+                <label for="question">Question <sup class="text-danger">*</sup></label>
+                  <input  type="text" 
+                          id="question" 
+                          class="form-control" 
+                          formControlName="question"
+                          [class.is-invalid]="question.invalid &&
+                                              question.touched">   
+                  <div *ngIf="question.invalid && question.touched">
+                    <small *ngIf="question.errors?.required" class="text-danger">Question Required</small>
+                  </div>  
+                </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8">
+              <div class="form-group">
+                <label for="answer">Answer</label>
+                <app-ngx-editor
+                    [placeholder]="'Enter Answer here...'" 
+                    [spellcheck]="true" 
+                    formControlName="answer"
+                    height="100px"></app-ngx-editor>
+                <div *ngIf="answer.invalid && answer.touched">
+                  <small *ngIf="answer.errors?.required" class="text-danger">Answer Required</small>
+                </div>  
+              </div>
+            </div>
+          </div>
+          <div class="row text-right">
+            <div class="col-md-12">
+                <button
+                        *ngIf="!edited"
+                        type="submit" 
+                        [disabled]="!faqForm.valid"
+                        class="btn btn-icon icon-right btn-primary">
+                        <i class="far fa-save"></i> 
+                Save</button>
+                <button
+                        *ngIf="edited"
+                        type="submit" 
+                        [disabled]="!faqForm.valid"
+                        class="btn btn-icon icon-right btn-primary">
+                        <i class="far fa-save"></i> 
+                Update</button>
+              &nbsp;
+          
+              <a (click)="resetForm()" class="btn btn-icon icon-right btn-light"><i class="fas fa-backspace"></i> Cancel</a>
+            </div>
+          </div>
+          </form>
+          <div class="row mt-5">
+            <div class="table-responsive">
+              <table id="faqDatatables" class="table table-striped dataTable no-footer">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Question</th>
+                    <th>Answer</th>
+                    <th>Category</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

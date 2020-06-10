@@ -1,0 +1,98 @@
+<link rel="stylesheet" href="/assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css">
+
+<div class="section-header">
+  <h1>Master Payment Method Setup</h1>
+  <div class="section-header-breadcrumb">
+    <div class="breadcrumb-item active"><a routeLink="/">Dashboard</a></div>
+    <div class="breadcrumb-item"><a>Master Payment Method Setup</a></div>
+  </div>
+</div>
+
+<div class="section-body">
+<div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4>Payment Method Setup</h4>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="PaymentMethod" (ngSubmit)="createPaymentMethod()">
+          <input type="text" formControlName="id" class="hilang"/>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="method_name">Payment Method Name</label>
+                  <input  type="text" 
+                          id="method_name" 
+                          pInputText 
+                          class="form-control" 
+                          formControlName="method_name"
+                          [class.is-invalid]="method_name.invalid &&
+                                              method_name.touched">   
+                  <div *ngIf="method_name.invalid && method_name.touched">
+                    <small *ngIf="method_name.errors?.required" class="text-danger">Parameter Name Required</small>
+                  </div>  
+                </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                  <label for="method_type">Payment Method Type</label>
+                  <select formControlName="method_type" 
+                          class="form-control"
+                          [class.is-invalid]="method_type.invalid &&
+                                              method_type.touched">
+                    <option value="" selected disabled>Choose Payment Type</option>
+                    <option value="new_business">New business</option>
+                    <option value="renewal">Renewal</option>
+                  </select>
+                  <div *ngIf="method_type.invalid && method_type.touched">
+                    <small *ngIf="method_type.errors?.required" class="text-danger">Type Required</small>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <div class="row text-right">
+            <div class="col-md-12">
+                <button
+                        *ngIf="!edited"
+                        type="submit" 
+                        [disabled]="!PaymentMethod.valid"
+                        class="btn btn-icon icon-right btn-primary">
+                        <i class="far fa-save"></i> 
+                Save</button>
+                <button
+                        *ngIf="edited"
+                        type="submit" 
+                        [disabled]="!PaymentMethod.valid"
+                        class="btn btn-icon icon-right btn-primary">
+                        <i class="far fa-save"></i> 
+                Update</button>
+              &nbsp;
+          
+              <a (click)="resetForm()" class="btn btn-icon icon-right btn-light"><i class="fas fa-backspace"></i> Cancel</a>
+            </div>
+          </div>
+          </form>
+          <div class="row mt-5">
+            <div class="table-responsive">
+              <table id="paymentMethodDatatables" class="table table-striped dataTable no-footer">
+                <thead>
+                  <tr class="text-center">
+                    <th>ID</th>
+                    <th>Payment Method Name</th>
+                    <th>Payment Method Type</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

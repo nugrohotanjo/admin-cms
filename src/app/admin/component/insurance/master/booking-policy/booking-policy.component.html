@@ -1,0 +1,83 @@
+<link rel="stylesheet" href="/assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="/assets/modules/bootstrap-daterangepicker/daterangepicker.css">
+
+<div class="section-header">
+  <h1>Booking E-Policy Management</h1>
+  <div class="section-header-breadcrumb">
+    <div class="breadcrumb-item active"><a routeLink="/">Dashboard</a></div>
+    <div class="breadcrumb-item"><a>Booking E-Policy Management</a></div>
+  </div>
+</div>
+
+<div class="section-body">
+<div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4>Add Booking E-Policy</h4>
+          <div class="card-header-form">
+            <button class="btn btn-info" type="button" (click)="downloadTemplate()">Download Template</button>
+          </div>
+        </div>
+        <div class="card-body">
+          <!-- <div class="row">
+            <button (click)="export()">Export!</button>
+          </div> -->
+          <form [formGroup]="bookingPolicyForm" (ngSubmit)="uploadBookingPolicy()">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="custom-file">
+                    <input  type="file"
+                            class="custom-file-input" 
+                            id="file" 
+                            (change)="onFileChange($event)"
+                            multiple="false"
+                            accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                    <input type="text" formControlName="file" style="display: none;"/>
+                    <label class="custom-file-label" for="file">Choose file</label>
+                  </div>  
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <img src="assets/img/excel.png" *ngIf="data[0] != undefined" width="250px" height="150px" />
+            </div>
+            <div class="row text-right">
+              <div class="col-md-12">
+                  <button
+                          type="submit" 
+                          class="btn btn-icon icon-right btn-primary">
+                          <i class="far fa-save"></i> 
+                  Upload</button>
+                &nbsp;
+            
+                <a (click)="resetForm()" class="btn btn-icon icon-right btn-light"><i class="fas fa-backspace"></i> Cancel</a>
+              </div>
+            </div>
+          </form>
+          <hr/>
+          <div class="row mt-5">
+            <div class="table-responsive">
+              <table id="bookingDatatables" class="table table-striped dataTable no-footer">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Booking Policy Number</th>
+                    <th>Booking Policy Status</th>
+                    <th>Agent Code</th>
+                    <th>Inserted Date</th>
+                    <th>Inserted By</th>
+                    <th>Updated Date</th>
+                    <th>Updated By</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

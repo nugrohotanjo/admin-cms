@@ -1,0 +1,77 @@
+<link rel="stylesheet" href="/assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css">
+
+<div class="section-header">
+  <h1>Master Product Category</h1>
+  <div class="section-header-breadcrumb">
+    <div class="breadcrumb-item active"><a routeLink="/">Dashboard</a></div>
+    <div class="breadcrumb-item"><a>Product Category</a></div>
+  </div>
+</div>
+<div class="section-body">
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <h4>Product Category</h4>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="categoryForm" (ngSubmit)="createCategory()">
+        <input type="text" formControlName="id" class="hilang"/>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="name">Product Category Name <sup class="text-danger">*</sup></label>
+                <input  type="text" 
+                        pInputText 
+                        class="form-control" 
+                        formControlName="name"
+                        [class.is-invalid]="name.invalid &&
+                                            name.touched">   
+                <div *ngIf="name.invalid && name.touched">
+                  <small *ngIf="name.errors?.required" class="text-danger">Category Name Required</small>
+                </div>  
+              </div>
+          </div>
+        </div>
+        <div class="row text-right">
+          <div class="col-md-12">
+              <button
+                      *ngIf="!edited"
+                      type="submit" 
+                      [disabled]="!categoryForm.valid"
+                      class="btn btn-icon icon-right btn-primary">
+                      <i class="far fa-save"></i> 
+              Save</button>
+              <button
+                      *ngIf="edited"
+                      type="submit" 
+                      [disabled]="!categoryForm.valid"
+                      class="btn btn-icon icon-right btn-primary">
+                      <i class="far fa-save"></i> 
+              Update</button>
+            &nbsp;
+        
+            <a (click)="resetForm()" class="btn btn-icon icon-right btn-light"><i class="fas fa-backspace"></i> Cancel</a>
+          </div>
+        </div>
+        </form>
+        <div class="row mt-5">
+          <div class="table-responsive">
+            <table id="categoryDatatables" class="table table-striped dataTable no-footer">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Product Category Name</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+

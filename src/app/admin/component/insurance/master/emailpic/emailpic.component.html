@@ -1,0 +1,119 @@
+<link rel="stylesheet" href="/assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css">
+
+<div class="section-header">
+  <h1>Master Email PIC</h1>
+  <div class="section-header-breadcrumb">
+    <div class="breadcrumb-item active"><a routeLink="/">Dashboard</a></div>
+    <div class="breadcrumb-item"><a>Master Email PIC management</a></div>
+  </div>
+</div>
+
+<div class="section-body">
+<div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4>Email PIC Management</h4>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="emailpicForm" (ngSubmit)="createEmail()">
+          <input type="text" formControlName="id" class="hilang"/>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="email">Email <sup class="text-danger">*</sup></label>
+                  <input  type="text" 
+                          id="email" 
+                          pInputText 
+                          class="form-control" 
+                          formControlName="email"
+                          [class.is-invalid]="email.invalid &&
+                                              email.touched">   
+                  <div *ngIf="email.invalid && email.touched">
+                    <small *ngIf="email.errors?.required" class="text-danger">Email Required</small>
+                  </div>  
+                </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="name">Name <sup class="text-danger">*</sup></label>
+                  <input  type="text" 
+                          id="name" 
+                          pInputText 
+                          class="form-control" 
+                          formControlName="name"
+                          [class.is-invalid]="name.invalid &&
+                                              name.touched">   
+                  <div *ngIf="name.invalid && name.touched">
+                    <small *ngIf="name.errors?.required" class="text-danger">Name Required</small>
+                  </div>  
+                </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="category">Category <sup class="text-danger">*</sup></label>
+                <select formControlName="category" class="form-control">
+                  <option value="" selected disabled>Choose Category</option>
+                  <option value="1">TXT File New Business</option>
+                  <option value="2">TXT File Renewal</option>
+                  <option value="3">Claim Submission Notification</option>
+                </select>
+                <div *ngIf="category.invalid && category.touched">
+                  <small *ngIf="category.errors?.required" class="text-danger">Category Required</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="description">Description </label>
+                <textarea formControlName="description" class="form-control" cols="30" rows="10"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="row text-right">
+            <div class="col-md-12">
+                <button
+                        *ngIf="!edited"
+                        type="submit" 
+                        [disabled]="!emailpicForm.valid"
+                        class="btn btn-icon icon-right btn-primary">
+                        <i class="far fa-save"></i> 
+                Save</button>
+                <button
+                        *ngIf="edited"
+                        type="submit" 
+                        [disabled]="!emailpicForm.valid"
+                        class="btn btn-icon icon-right btn-primary">
+                        <i class="far fa-save"></i> 
+                Update</button>
+              &nbsp;
+          
+              <a (click)="resetForm()" class="btn btn-icon icon-right btn-light"><i class="fas fa-backspace"></i> Cancel</a>
+            </div>
+          </div>
+          </form>
+          <div class="row mt-5">
+            <div class="table-responsive">
+              <table id="emailpicDatatables" class="table table-striped dataTable no-footer">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Email</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Update By</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

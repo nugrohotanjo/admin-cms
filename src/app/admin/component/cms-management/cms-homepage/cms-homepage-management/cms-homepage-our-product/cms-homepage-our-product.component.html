@@ -1,0 +1,166 @@
+<section class="section">
+  <div class="section-header">
+    <div class="section-header-back">
+        <a routerLink="/cms-homepage" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
+    </div>
+    <h1>Our Product Setting</h1>
+      <div class="section-header-breadcrumb">
+      <div class="breadcrumb-item active"><a routerLink="/">Dashboard</a></div>
+      <div class="breadcrumb-item active"><a routerLink="/cms-homepage">Homepage</a></div>
+      <div class="breadcrumb-item">Our Product Settings</div>
+    </div>
+  </div>
+</section>
+
+<div class="section-body">
+  <div class="row">
+    
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4>Our Product Management</h4>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="formCms" (ngSubmit)="createCms()">
+            <input type="text" class="menghilang" formControlName="id" />
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="">Insurance Name <sup class="text-danger">*</sup></label>
+                  <input type="text" formControlName="insurance_name" class="form-control" />
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="">Title <sup class="text-danger">*</sup></label>
+                  <input type="text" formControlName="title" class="form-control" />
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="">Link <sup class="text-danger">*</sup></label>
+                  <input type="text" formControlName="link" class="form-control" />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="">Footer Description</label>
+                  <textarea formControlName="footer_description" 
+                            class="form-control" >
+                  </textarea>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="image">Image <sup class="text-danger">*</sup> </label> &nbsp; <small class="text-danger">Recomend Size : Width 528px, Height 322px</small>
+                    <div class="custom-file">
+                      <input  type="file" 
+                              class="custom-file-input" 
+                              id="image" 
+                              (change)="selectFile($event)"
+                              accept="image/x-png,image/jpeg">
+                      <input type="text" formControlName="image" style="display: none;"/>
+                      <label class="custom-file-label" for="image">Choose file</label>
+                    </div>  
+                    <div class="progress mb-3 mt-2" *ngIf="progress.percentage > 0">
+                      <div  class="progress-bar" 
+                            role="progressbar" 
+                            attr.aria-valuenow="{{progress.percentage}}"
+                            aria-valuemin="0" aria-valuemax="100"
+                            [ngStyle]="{width:progress.percentage+'%'}">{{progress.percentage}}%</div>
+                    </div>
+                    <div class="mt-2">
+                      <img [src]="imgUrl" *ngIf="imgUrl != null" width="250px" height="250ox" />
+                    </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="">Description <sup class="text-danger">*</sup></label>
+                  <app-ngx-editor
+                    [placeholder] ="'Enter text here...'" 
+                    [spellcheck]  ="true" 
+                    [height]      ="'300px'" 
+                    [minHeight]   ="'10px'"
+                    formControlName="description">
+                  </app-ngx-editor>
+                </div>
+              </div>
+            </div>
+            <div class="row text-right">
+              <div class="col-md-12">
+                  <button
+                          type="submit" 
+                          class="btn btn-icon icon-right btn-primary">
+                          <i class="far fa-save"></i> 
+                  Save</button>
+                &nbsp;
+            
+                <a (click)="resetForm()" class="btn btn-icon icon-right btn-light"><i class="fas fa-backspace"></i> Cancel</a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <hr/>
+      
+      <h2 class="mt-4 mb-3">Position</h2>
+      
+      <div class="row" style="width:100%;" [sortablejs]="ListCarousel" [sortablejsOptions]="eventOptions">
+        <div class="col-sm-4 my-3" *ngFor="let listCarousel of ListCarousel">
+          <div class="card">
+            <div class="card-header">
+              <img src="{{ image_url + listCarousel.image }}" alt="" width="250px" height="250px">
+            </div>
+            <div class="card-body">
+              <table>
+                <tr>
+                  <td>
+                    {{ listCarousel.insurance_name }}
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <b>
+                      {{ listCarousel.title }}
+                    </b>
+                  </td>
+                </tr>
+                <tr>
+                  <td>{{ listCarousel.description }}</td>
+                </tr>
+                <tr>
+                  <td>
+                    <a href="{{ listCarousel.link }}" target="_BLANK">Learn More</a>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class="card-footer">
+              <button (click)="editCarousel(listCarousel.id)" class="btn btn-primary">Edit</button>
+                &nbsp;
+              <button (click)="deleteCarousel(listCarousel.id)" class="btn btn-danger">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr/>
+
+      <div class="container">
+        <div class="row">
+          <button (click)="savePosition()" class="btn btn-success">Save Position</button>  
+        </div>
+      </div>
+    
+    </div>
+
+  </div>
+</div>

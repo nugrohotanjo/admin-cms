@@ -1,0 +1,77 @@
+<section class="section">
+  <div class="section-header">
+    <div class="section-header-back">
+        <a routerLink="/log" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
+    </div>
+    <h1>Log Management</h1>
+      <div class="section-header-breadcrumb">
+      <div class="breadcrumb-item active"><a routerLink="/">Dashboard</a></div>
+      <div class="breadcrumb-item active"><a routerLink="/log">Log Management</a></div>
+      <div class="breadcrumb-item">Log Management</div>
+    </div>
+  </div>
+</section>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4>Log Detail</h4>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <table class="table">
+            <tr>
+              <td>Name </td>        <td>: {{ log_data.name }}</td>
+            </tr>
+            <tr>
+              <td>Category </td>    <td>: {{ log_data.category }}</td>
+            </tr>
+            <tr>
+              <td>Date </td>        <td>: {{ log_data.createdAt }}</td>
+            </tr>
+            <tr>
+              <td>Actvity </td>     <td>: {{ log_data.activity }}</td>
+            </tr>
+          </table>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <h5>Original Data</h5>
+            <hr>
+            <div [innerHtml]="origin_data"></div>
+          </div>
+          <div class="col-md-6">
+            <h5>Updatable Data</h5>
+            <hr>
+            <div [innerHtml]="update_data"></div>
+          </div>
+        </div>
+        <!-- <div class="row">
+          <div class="col-md-6">
+            <label for="">Name</label>
+            <span> {{ log_data.name }}</span>
+          </div>
+          <div class="col-md-6">
+            <label for="">Category</label>
+            <span> {{ log_data.category }}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label for="">Origin Data</label>
+          </div>
+          <div class="col-md-6">
+            <label for="">Update Data</label>
+          </div>
+        </div> -->
+        <!-- <div class="row">
+          <div class="col-md-12">
+            <label for="">Activity</label>
+            <span> {{ log_data.activity }}</span>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>

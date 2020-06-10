@@ -1,0 +1,52 @@
+<link rel="stylesheet" href="/assets/modules/summernote/summernote-bs4.css">
+
+<div class="section-header">
+  <h1 *ngIf="Type != 'rider'">Step 9 Product Exclusion</h1>
+</div>
+<!-- <pre>
+  {{  exclusionForm.value | json }}
+</pre> -->
+<form [formGroup]="exclusionForm" (ngSubmit)="addExclusion()">
+<input type="text" formControlName="id" class="hilang" />
+<div class="section-body">
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4>Product Exclusion</h4>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="brochure">Content</label>
+              <app-ngx-editor
+                placeholder="Enter text here..." 
+                [spellcheck]="true" 
+                formControlName="text"></app-ngx-editor>
+            </div>
+          </div>
+        </div>
+        <div class="row text-right mt-5">
+          <div class="col-md-12">
+              <button
+                type="button"
+                class="btn btn-icon icon-right btn-light"
+                routerLink="/{{prefix}}/product/add/brochure/{{Type}}/{{Category}}/{{Id}}">
+                  <i class="fas fa-arrow-circle-left"></i>
+              Back</button>
+              &nbsp;
+              <button
+                type="submit"
+                class="btn btn-icon icon-right btn-primary">
+                  <i class="fas fa-arrow-circle-right"></i>
+              Next</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+</form>

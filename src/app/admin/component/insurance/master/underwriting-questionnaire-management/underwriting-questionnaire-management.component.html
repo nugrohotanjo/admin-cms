@@ -1,0 +1,119 @@
+<link rel="stylesheet" href="/assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css">
+
+<div class="section-header">
+  <h1>Master Underwriting Questionnaire</h1>
+  <div class="section-header-breadcrumb">
+    <div class="breadcrumb-item active"><a routeLink="/">Dashboard</a></div>
+    <div class="breadcrumb-item"><a>Master Underwriting Questionnaire management</a></div>
+  </div>
+</div>
+
+<div class="section-body">
+<div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4>Underwriting Questionnaire Management</h4>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="underwritingQuestionnaireForm" (ngSubmit)="createUnderwritingQuestionnaire()">
+          <input type="text" formControlName="id" class="hilang"/>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="underwriting_code">Underwriting Code</label>
+                  <input  type="text" 
+                          id="underwriting_code" 
+                          pInputText 
+                          class="form-control" 
+                          formControlName="underwriting_code"
+                          [class.is-invalid]="underwriting_code.invalid &&
+                                              underwriting_code.touched">   
+                  <div *ngIf="underwriting_code.invalid && underwriting_code.touched">
+                    <small *ngIf="underwriting_code.errors?.required" class="text-danger">Underwriting Code Required</small>
+                  </div>  
+                </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="underwriting_questions">Underwriting Questions</label>
+                <textarea 
+                        id="underwriting_questions" 
+                        rows="10" 
+                        cols="30" 
+                        class="form-control"
+                        pInputTextarea 
+                        autoResize="autoResize" 
+                        formControlName="underwriting_questions"
+                        [class.is-invalid]="underwriting_questions.invalid &&
+                                            underwriting_questions.touched"></textarea> 
+                  <div *ngIf="underwriting_questions.invalid && underwriting_questions.touched">
+                    <small *ngIf="underwriting_questions.errors?.required" class="text-danger">Underwriting Questions Required</small>
+                  </div>  
+                </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                  <label for="answer">Answer to Pass</label>
+                  <select formControlName="answer" 
+                          class="form-control"
+                          [class.is-invalid]="answer.invalid &&
+                                              answer.touched">
+                    <option value="" selected disabled>Choose answer</option>
+                    <option value="yes">Yes</option>
+                    <option value="no" >No</option>
+                  </select>
+                  <div *ngIf="answer.invalid && answer.touched">
+                    <small *ngIf="answer.errors?.required" class="text-danger">Answer Required</small>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <div class="row text-right">
+            <div class="col-md-12">
+                <button
+                        *ngIf="!edited"
+                        type="submit" 
+                        [disabled]="!underwritingQuestionnaireForm.valid"
+                        class="btn btn-icon icon-right btn-primary">
+                        <i class="far fa-save"></i> 
+                Save</button>
+                <button
+                        *ngIf="edited"
+                        type="submit" 
+                        [disabled]="!underwritingQuestionnaireForm.valid"
+                        class="btn btn-icon icon-right btn-primary">
+                        <i class="far fa-save"></i> 
+                Update</button>
+              &nbsp;
+          
+              <a (click)="resetForm()" class="btn btn-icon icon-right btn-light"><i class="fas fa-backspace"></i> Cancel</a>
+            </div>
+          </div>
+          </form>
+          <div class="row mt-5">
+            <div class="table-responsive">
+              <table id="underwritingQuestionnaireDatatables" class="table table-striped dataTable no-footer">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Underwriting Code</th>
+                    <th>Underwriting Questions</th>
+                    <th>Answer</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

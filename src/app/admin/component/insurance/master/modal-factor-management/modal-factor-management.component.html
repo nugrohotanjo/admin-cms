@@ -1,0 +1,99 @@
+<link rel="stylesheet" href="/assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css">
+
+<div class="section-header">
+  <h1>Master Modal Factor</h1>
+  <div class="section-header-breadcrumb">
+    <div class="breadcrumb-item active"><a routeLink="/">Dashboard</a></div>
+    <div class="breadcrumb-item"><a>Master Modal Factor management</a></div>
+  </div>
+</div>
+
+<div class="section-body">
+<div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4>Modal Factor Management</h4>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="modalFactorForm" (ngSubmit)="createModalFactor()">
+          <input type="text" formControlName="id" class="hilang"/>
+          <!-- <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                  <label for="frequency">Frequency</label>
+                  <select formControlName="frequency" 
+                          class="form-control"
+                          [class.is-invalid]="frequency.invalid &&
+                                              frequency.touched">
+                    <option value="" selected disabled>Choose frequency</option>
+                    <option value="yearly">Yearly</option>
+                    <option value="half_yearly">Half Yearly</option>
+                    <option value="quarterly">Quarterly</option>
+                    <option value="monthly">Monthly</option>
+                  </select>
+                  <div *ngIf="frequency.invalid && frequency.touched">
+                    <small *ngIf="frequency.errors?.required" class="text-danger">frequency Required</small>
+                  </div>
+                </div>
+            </div>
+          </div> -->
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="frequency">Modal Factor</label>
+                  <input  type="text" 
+                          id="frequency" 
+                          pInputText 
+                          class="form-control" 
+                          formControlName="frequency"
+                          [class.is-invalid]="frequency.invalid &&
+                                              frequency.touched">
+                  <div *ngIf="frequency.invalid && frequency.touched">
+                    <small *ngIf="frequency.errors?.required" class="text-danger">Modal Factor Required</small>
+                  </div>  
+                </div>
+            </div>
+          </div>
+          <div class="row text-right">
+            <div class="col-md-12">
+                <button
+                        *ngIf="!edited"
+                        type="submit" 
+                        [disabled]="!modalFactorForm.valid"
+                        class="btn btn-icon icon-right btn-primary">
+                        <i class="far fa-save"></i> 
+                Save</button>
+                <button
+                        *ngIf="edited"
+                        type="submit" 
+                        [disabled]="!modalFactorForm.valid"
+                        class="btn btn-icon icon-right btn-primary">
+                        <i class="far fa-save"></i> 
+                Update</button>
+              &nbsp;
+          
+              <a (click)="resetForm()" class="btn btn-icon icon-right btn-light"><i class="fas fa-backspace"></i> Cancel</a>
+            </div>
+          </div>
+          </form>
+          <div class="row mt-5">
+            <div class="table-responsive">
+              <table id="modalFactorDatatables" class="table table-striped dataTable no-footer">
+                <thead>
+                  <tr class="text-center">
+                    <th>ID</th>
+                    <th>Modal Factor</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

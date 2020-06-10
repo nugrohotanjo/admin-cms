@@ -1,0 +1,190 @@
+<link rel="stylesheet" href="/assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css">
+
+<div class="section-header">
+  <h1>Master Formula</h1>
+  <div class="section-header-breadcrumb">
+    <div class="breadcrumb-item active"><a routeLink="/">Dashboard</a></div>
+    <div class="breadcrumb-item"><a>Master Formula</a></div>
+  </div>
+</div>
+
+<div class="section-body">
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <p>Assign your formula for the products that you will build</p>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="formulaForm" (ngSubmit)="storeFormula()">
+          <!-- <pre>
+            {{ formulaForm.value | json }}
+          </pre> -->
+        <input type="text" formControlName="id" class="hilang"/>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="label">Formula Label <sup class="text-danger">*</sup></label>
+                <input  type="text" 
+                        pInputText 
+                        class="form-control" 
+                        formControlName="label"
+                        [class.is-invalid]="label.invalid &&
+                                            label.touched">   
+                <div *ngIf="label.invalid && label.touched">
+                  <small *ngIf="label.errors?.required" class="text-danger">Formula Label Required</small>
+                </div>  
+              </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="product_type">Choose Product Type <sup class="text-danger">*</sup></label>
+              <select   name="" 
+                        id="" 
+                        class="form-control"
+                        formControlName="product_type"
+                        [class.is-invalid]="product_type.invalid &&
+                                            product_type.touched">
+                <option value="" selected disabled>Choose Product Type </option>
+                <option value="{{ category.id }}" *ngFor="let category of ProductCategoryList">{{ category.category_name }} </option>
+              </select>
+                <div *ngIf="product_type.invalid && product_type.touched">
+                  <small *ngIf="product_type.errors?.required" class="text-danger">Product Type Required</small>
+                </div>  
+              </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="age_basis">Choose Age Basis Calculation <sup class="text-danger">*</sup></label>
+              <select   name="" 
+                        id="" 
+                        class="form-control"
+                        formControlName="age_basis"
+                        [class.is-invalid]="age_basis.invalid &&
+                                            age_basis.touched">
+                <option value="" selected disabled>Choose Age Basis</option>
+                <option value="last_birthday">Last Birthday </option>
+                <option value="next_birthday">Next Birthday </option>
+              </select>
+                <div *ngIf="age_basis.invalid && age_basis.touched">
+                  <small *ngIf="age_basis.errors?.required" class="text-danger">Age Basis Required</small>
+                </div>  
+              </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <span>Click the elements for creating the formula</span>
+          </div>
+          <div class="col-md-12 mt-2">
+            <div class="row text-center">
+              <div class="col-md-1 mr-5">
+                <button type="button" (click)="addFormula('rate')" class="btn-xlarge"><span>Rate Value / Fix Amount</span></button>
+              </div>
+              <!-- <div class="col-md-1 mr-5">
+                <button type="button" (click)="addFormula('unit')" class="btn-xlarge"><span>Unit</span></button>
+              </div> -->
+              <div class="col-md-1 mr-5">
+                <button type="button" (click)="addFormula('sum_assured')" class="btn-xlarge"><span>Sum Assured</span></button>
+              </div>
+              <!-- <div class="col-md-1 mr-5">
+                <button type="button" (click)="addFormula('modal_factor')" class="btn-xlarge"><span>Modal Factor</span></button>
+              </div> -->
+              <div class="col-md-1 mr-5">
+                <button type="button" (click)="addFormula('benefit_level')" class="btn-xlarge"><span>Benefit Level</span></button>
+              </div>
+              <div class="col-md-1 mr-5">
+                <button type="button" (click)="addFormula('premium')" class="btn-xlarge"><span>Premium</span></button>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="col-md-12 mt-2">
+            <div class="row text-center">
+              <ng-container *ngFor="let p of ListPromo">
+                <div class="col-md-1 mt-2 mr-5">
+                  <button type="button" (click)="addFormula( p.promo_code )" class="btn-xlarge"><span> {{ p.promo_code }}</span></button>
+                </div>
+              </ng-container>
+              </div>
+          </div> -->
+          <div class="col-md-12 mt-4">
+            <div class="row">
+              <div class="col-md-1">
+                <button type="button" (click)="addFormula('+')" class="btn-xsmall"><span><b>+</b></span></button>
+              </div>
+              <div class="col-md-1">
+                <button type="button" (click)="addFormula('-')" class="btn-xsmall"><span><b>-</b></span></button>
+              </div>
+              <div class="col-md-1">
+                <button type="button" (click)="addFormula('*')" class="btn-xsmall"><span><b>x</b></span></button>
+              </div>
+              <div class="col-md-1">
+                <button type="button" (click)="addFormula(':')" class="btn-xsmall"><span><b>&divide;</b></span></button>
+              </div>
+              <div class="col-md-1">
+                <button type="button" (click)="addFormula('(')" class="btn-xsmall"><span><b>(</b></span></button>
+              </div>
+              <div class="col-md-1">
+                <button type="button" (click)="addFormula(')')" class="btn-xsmall"><span><b>)</b></span></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-4">
+          <div class="col-md-12">
+            <b>Preview</b>
+          </div>
+          <div class="col-md-12">
+            <ul class="preview-formula">
+              <li *ngFor="let f of Formula"><span style="font-size : 20px;font-weight: bold;">{{ f }}</span></li>
+            </ul>
+            <button class="btn btn-primary" (click)="clearPreview()" *ngIf="Formula?.length > 0">Clear</button>
+          </div>
+        </div>
+        <div class="row text-right">
+          <div class="col-md-12">
+              <button
+                      *ngIf="!edited"
+                      type="submit" 
+                      [disabled]="!formulaForm.valid"
+                      class="btn btn-icon icon-right btn-primary">
+                      <i class="far fa-save"></i> 
+              Save</button>
+              <button
+                      *ngIf="edited"
+                      type="submit" 
+                      [disabled]="!formulaForm.valid"
+                      class="btn btn-icon icon-right btn-primary">
+                      <i class="far fa-save"></i> 
+              Update</button>
+            &nbsp;
+        
+            <a (click)="resetForm()" class="btn btn-icon icon-right btn-light"><i class="fas fa-backspace"></i> Cancel</a>
+          </div>
+        </div>
+        </form>
+        <hr>
+        <div class="row mt-5">
+          <div class="table-responsive">
+            <table id="formulaDatatables" class="table table-striped dataTable no-footer">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Formula</th>
+                  <th>Category</th>
+                  <th>Age Basis</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+

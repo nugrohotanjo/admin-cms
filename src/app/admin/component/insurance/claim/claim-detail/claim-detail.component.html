@@ -1,0 +1,249 @@
+<section class="section">
+  <div class="section-header">
+    <div class="section-header-back">
+        <a routerLink="/claim" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
+    </div>
+    <h1>Claim Detail</h1>
+      <div class="section-header-breadcrumb">
+      <div class="breadcrumb-item active"><a routerLink="/">Dashboard</a></div>
+      <div class="breadcrumb-item active"><a routerLink="/claim">List Claim</a></div>
+      <div class="breadcrumb-item">Claim Detail</div>
+    </div>
+  </div>
+</section>
+
+<div class="section-body">
+  <div class="row">
+    
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h3>Biodata</h3>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="heading">
+                <p class="caption font-weight-bold">Full Name</p>
+                <p class="desc">{{ ClaimDetail?.customer_id?.full_name }}</p>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="heading">
+                <p class="caption font-weight-bold">Gender</p>
+                <p class="desc">{{ ClaimDetail?.customer_id?.gender == 'f' ? 'Wanita' : 'Pria' }}</p>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="heading">
+                <p class="caption font-weight-bold">Currency</p>
+                <p class="desc">IDR</p>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="heading">
+                <p class="caption font-weight-bold">Policy Number</p>
+                <p class="desc">{{ ClaimDetail?.policy_number }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h3>Information Indication</h3>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="heading">
+                <p class="caption font-weight-bold">The Symptoms</p>
+                <p class="desc">{{ ClaimDetail?.symptoms }}</p>
+              </div>
+              <div class="heading">
+                <p class="caption font-weight-bold">First Consultation</p>
+                <p class="desc">{{ ClaimDetail?.first_consult }}</p>
+              </div>
+              <div class="heading">
+                <p class="caption font-weight-bold">When did you suffer from this disease before?</p>
+                <p class="desc">{{ ClaimDetail?.suffer_disease_before }}</p>
+              </div>
+              <div class="heading">
+                <p class="caption font-weight-bold">Doctor's address</p>
+                <p class="desc">{{ ClaimDetail?.doctor_address }}</p>
+              </div>
+              <div class="heading">
+                <p class="caption font-weight-bold">Type of care</p>
+                <p class="desc">Diperban</p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="heading">
+                <p class="caption font-weight-bold">Suffering Since</p>
+                <p class="desc">{{ ClaimDetail?.suffer_since }}</p>
+              </div>
+              <div class="heading">
+                <p class="caption font-weight-bold">Have suffered the same disease</p>
+                <p class="desc">{{ ClaimDetail?.same_disease }}</p>
+              </div>
+              <div class="heading">
+                <p class="caption font-weight-bold">The name of the treating doctor</p>
+                <p class="desc">{{ ClaimDetail?.doctor_treatment_name }}</p>
+              </div>
+              <div class="heading">
+                <p class="caption font-weight-bold">Amount (Amount of Claimed Money)</p>
+                <p class="desc">{{ ClaimDetail?.amount }}</p>
+              </div>
+              <div class="heading">
+                <p class="caption font-weight-bold">Evident File</p>
+                <a href="{{ evident_file }}{{ file }}" *ngFor="let file of Evident_Files">
+                  <img src="assets/img/evident_file.png" width="100px" height="150px">
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h3>Accident Information</h3>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="heading">
+                <p class="caption font-weight-bold">Accident Date</p>
+                <p class="desc">{{ ClaimDetail?.accident_date }}</p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="heading">
+                <p class="caption font-weight-bold">Accident Hour</p>
+                <p class="desc">{{ ClaimDetail?.accident_hour }}</p>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="heading">
+                <p class="caption font-weight-bold">Accident place</p>
+                <p class="desc">{{ ClaimDetail?.accident_place }}</p>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="heading">
+                <p class="caption font-weight-bold">Accident Chronology</p>
+                <p class="desc">{{ ClaimDetail?.accident_chronology }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h3>Account Information</h3>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="heading">
+                <p class="caption font-weight-bold">Account Holder Name</p>
+                <p class="desc">{{ ClaimDetail?.bank_owner_name }}</p>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="heading">
+                <p class="caption font-weight-bold">Account Number</p>
+                <p class="desc">{{ ClaimDetail?.bank_owner_number }}</p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="heading">
+                <p class="caption font-weight-bold">Account Bank</p>
+                <p class="desc">{{ ClaimDetail?.bank_name }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h3>Status Information</h3>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="claimForm" (ngSubmit)="createDecision()">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="heading">
+                <p class="caption font-weight-bold">Status Claim</p>
+                <p class="desc" *ngIf="ClaimDetail?.claim_status == '0'">Waiting Decision</p>
+                <p class="desc" *ngIf="ClaimDetail?.claim_status == '1'">Approved Claim</p>
+                <p class="desc" *ngIf="ClaimDetail?.claim_status == '2'">Rejected Claim</p>
+                <p class="desc" *ngIf="ClaimDetail?.claim_status == '3'">Canceled Claim</p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="heading">
+                <p class="caption font-weight-bold">Claim Decision For Submission</p>
+                  <select   class="form-control" 
+                            formControlName="decision"
+                            [class.is-invalid]="decision.invalid &&
+                                                decision.touched">
+                    <option value="" selected disabled>Choose Status</option>
+                    <option value="1">Approved Claim</option>
+                    <option value="2">Reject Claim</option>
+                    <option value="3">Pending Claim</option>
+                    <option value="4">Payment Process</option>
+                  </select>
+                <div *ngIf="decision.invalid && decision.touched">
+                  <small *ngIf="decision.errors?.required" class="text-danger">Decision Required</small>
+                </div>
+              </div>
+              <div class="heading mt-2">
+                <p class="caption font-weight-bold">Reason Details</p>
+                <textarea   class="form-control" 
+                            formControlName="reason"
+                            [class.is-invalid]="reason.invalid &&
+                                                reason.touched"></textarea>
+                <div *ngIf="reason.invalid && reason.touched">
+                  <small *ngIf="reason.errors?.required" class="text-danger">Reason Required</small>
+                </div>
+              </div>
+              <div class="heading mt-2">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </div>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

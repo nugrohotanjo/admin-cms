@@ -1,0 +1,126 @@
+<div class="section-header">
+  <h1 *ngIf="Type != 'rider'">Step 7 Product Parameterization</h1>
+  <h1 *ngIf="Type === 'rider'">Step 4 Product Parameterization</h1>
+</div>
+<form [formGroup]="questionnaireForm" (ngSubmit)="addQuestionnaire()">
+<div class="section-body">
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4>Product Parameterization</h4>
+      </div>
+      <div class="card-body">
+        <!-- <pre>{{ questionnaireForm.value | json }}</pre> -->
+        <div class="row" *ngIf="Type != 'rider'">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="underwriting_questionnaire">Setup Underwriting Questions</label>
+              <p-multiSelect 
+                formControlName="underwriting_questionnaire"
+                [style]="{'width':'100%'}"
+                [options]="ListQuestionnaire" 
+                optionLabel="underwriting_questions" 
+                [panelStyle]="{width: '100%'}" 
+                [showHeader]="true" >
+              </p-multiSelect>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row">
+              <h6>Policy Holder Age</h6>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label for="min_age">Setup Min Entry Age <sup style="color:red">*</sup></label>
+                <input  type="number" 
+                        class="form-control"
+                        formControlName="min_age">
+              </div>
+              <div class="col-md-6">
+                  <label for="min_age">Setup Max Entry Age <sup style="color:red">*</sup></label>
+                  <input  type="number" 
+                          class="form-control"
+                          formControlName="max_age">
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row">
+              <h6>Insured Age</h6>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label for="min_age">Setup Min Entry Age <sup style="color:red">*</sup></label>
+                <input  type="number" 
+                        class="form-control"
+                        formControlName="insured_min_age">
+              </div>
+              <div class="col-md-6">
+                  <label for="min_age">Setup Max Entry Age <sup style="color:red">*</sup></label>
+                  <input  type="number" 
+                          class="form-control"
+                          formControlName="insured_max_age">
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row">
+              <h6>Join Insured Age</h6>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label for="min_age">Setup Min Entry Age <sup style="color:red">*</sup></label>
+                <input  type="number" 
+                        class="form-control"
+                        formControlName="join_insured_min_age">
+              </div>
+              <div class="col-md-6">
+                  <label for="min_age">Setup Max Entry Age <sup style="color:red">*</sup></label>
+                  <input  type="number" 
+                          class="form-control"
+                          formControlName="join_insured_max_age">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row text-right mt-5">
+          <div class="col-md-12">
+              <button
+                type="button"
+                *ngIf="Type === 'rider'"
+                routerLink="/{{prefix}}/product/add/modalfactor/{{Type}}/{{Category}}/{{Id}}"
+                class="btn btn-icon icon-right btn-light">
+                  <i class="fas fa-arrow-circle-left"></i>
+              Back</button>
+              <button
+                type="button"
+                *ngIf="Type != 'rider'"
+                routerLink="/{{prefix}}/product/add/rider/{{Type}}/{{Category}}/{{Id}}"
+                class="btn btn-icon icon-right btn-light">
+                  <i class="fas fa-arrow-circle-left"></i>
+              Back</button>
+              &nbsp;
+              <button
+                type="submit"
+                class="btn btn-icon icon-right btn-primary">
+                  <i class="fas fa-arrow-circle-right"></i>
+              Next</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+</form>

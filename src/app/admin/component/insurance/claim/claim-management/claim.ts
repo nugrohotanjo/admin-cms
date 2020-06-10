@@ -1,0 +1,40 @@
+import { Customer } from '../../customer/customer-management/customer';
+
+export class Claim {
+    constructor(
+        public id                               : String,
+        public policy_number                    : String,
+        public customer_id                      : Customer,
+        public claim_submission_id              : String,
+        public pol_id                           : String,
+        public suffer_since                     : String,
+        public suffer_disease_before            : String,
+        public policy_holder_id                 : String,
+        public deases                           : String,
+        public event_date                       : String,
+        public evident_file                     : String,
+        public first_consult                    : String,
+        public history_deases                   : String,
+        public last_deases_date                 : String,
+        public docter_name                      : String,
+        public doctor_address                   : String,
+        public doctor_treatment_name            : String,
+        public treatment_type                   : String,
+        public amount                           : String,
+        public upload_file                      : String,
+        public accident_place                   : String,
+        public accident_hour                    : String,
+        public accident_date                    : String,
+        public accident_chronology              : String,
+        public customer_bank_account_id         : String,
+        public symptoms                         : String,
+        public Insert_timestamp                 : String,
+        public Update_timestamp                 : String,
+        public same_disease                     : String,
+        public Updated_By                       : String,
+        public claim_status                     : String,
+        public bank_owner_name                  : String,
+        public bank_owner_number                : String,
+        public bank_name                        : String
+    ) {}
+}

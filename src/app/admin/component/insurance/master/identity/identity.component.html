@@ -1,0 +1,92 @@
+<div class="section-header">
+  <h1>Master Identity</h1>
+  <div class="section-header-breadcrumb">
+    <div class="breadcrumb-item active"><a routeLink="/">Dashboard</a></div>
+    <div class="breadcrumb-item"><a>Master Identity management</a></div>
+  </div>
+</div>
+
+<div class="section-body">
+<div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4>Identity Management</h4>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="identityForm" (ngSubmit)="createIdentity()">
+          <input type="text" formControlName="id" class="hilang"/>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="core_code">Core Code <sup class="text-danger">*</sup></label>
+                  <input  type="text" 
+                          id="core_code" 
+                          pInputText 
+                          class="form-control" 
+                          formControlName="core_code"
+                          [class.is-invalid]="core_code.invalid &&
+                                              core_code.touched">   
+                  <div *ngIf="core_code.invalid && core_code.touched">
+                    <small *ngIf="core_code.errors?.required" class="text-danger">Core Code Required</small>
+                  </div>  
+                </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="name">Name <sup class="text-danger">*</sup></label>
+                  <input  type="text" 
+                          id="name" 
+                          pInputText 
+                          class="form-control" 
+                          formControlName="name"
+                          [class.is-invalid]="name.invalid &&
+                                              name.touched">   
+                  <div *ngIf="name.invalid && name.touched">
+                    <small *ngIf="name.errors?.required" class="text-danger">Name Required</small>
+                  </div>  
+                </div>
+            </div>
+          </div>
+          <div class="row text-right">
+            <div class="col-md-12">
+                <button
+                        *ngIf="!edited"
+                        type="submit" 
+                        [disabled]="!identityForm.valid"
+                        class="btn btn-icon icon-right btn-primary">
+                        <i class="far fa-save"></i> 
+                Save</button>
+                <button
+                        *ngIf="edited"
+                        type="submit" 
+                        [disabled]="!identityForm.valid"
+                        class="btn btn-icon icon-right btn-primary">
+                        <i class="far fa-save"></i> 
+                Update</button>
+              &nbsp;
+          
+              <a (click)="resetForm()" class="btn btn-icon icon-right btn-light"><i class="fas fa-backspace"></i> Cancel</a>
+            </div>
+          </div>
+          </form>
+          <div class="row mt-5">
+            <div class="table-responsive">
+              <table id="identityDatatables" class="table table-striped dataTable no-footer">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Core Code</th>
+                    <th>Name</th>
+                    <th>Update By</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

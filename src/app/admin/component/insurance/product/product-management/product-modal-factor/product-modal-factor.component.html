@@ -1,0 +1,66 @@
+<div class="section-header">
+  <h1>Step 3 Modal Factor</h1>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form [formGroup]="modalFactorForm" (ngSubmit)="saveProductModalFactor()">
+    <div class="card">
+      <div class="card-header">
+        <h4>Modal Factor List</h4>
+      </div>
+      <div class="card-body">
+        <!-- <pre>{{ modalFactorForm.value | json }}</pre> -->
+        <div class="row">
+            <div class="col-12 col-sm-12 col-lg-12">
+              <table class="table table-striped">
+                <thead>
+                  <tr class="text-center">
+                    <th>Payment Term</th>
+                    <th>Modal Factor</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody formArrayName="modal_factors">
+                  <tr *ngFor="let x of t.controls;let i = index" [formGroupName]="i">
+                      <span *ngFor="let z of ListModalFactor">
+                        <td class="text-center" *ngIf="x.value.modalFactor_id === z.id">
+                          {{ z.frequency }}
+                        </td>
+                      </span>
+                    <td> <input formControlName="value" type="number" step="0.0000001" class="form-control"> </td>
+                    <td class="p-0 text-center">
+                      <div class="custom-checkbox custom-control">
+                        <input formControlName="payment_term_status" type="checkbox" data-checkboxes="mygroup" class="custom-control-input" id="{{ i }}">
+                        <label for="{{ i }}" class="custom-control-label">&nbsp;</label>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              
+          </div>
+          
+        </div>
+        <div class="row text-right">
+          <div class="col-md-12">
+              <button
+                type="button"
+                routerLink="/{{prefix}}/product/add/rate/{{Type}}/{{Category_id}}/{{ProductId}}"
+                class="btn btn-icon icon-right btn-light">
+                  <i class="fas fa-arrow-circle-left"></i>
+              Back</button>
+              &nbsp;
+              <button
+                type="submit"
+                class="btn btn-icon icon-right btn-primary">
+                  <i class="fas fa-arrow-circle-right"></i>
+              Next</button>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </form>
+  </div>
+</div>

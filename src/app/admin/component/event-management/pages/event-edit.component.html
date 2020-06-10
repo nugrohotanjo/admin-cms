@@ -1,0 +1,128 @@
+<div class="section-header">
+  <h1>Create Event</h1>
+</div>
+
+<form [formGroup]="editEvent" (ngSubmit)="updateEvent()">
+<div class="row">
+<div class="col-md-8">
+  <div class="form-group">
+    <label for="title">Title</label>
+      <input  type="text" 
+              id="title" 
+              pInputText 
+              placeholder="Input Event Title here..." 
+              class="form-control" 
+              formControlName="title"
+              [class.is-invalid]="title.invalid &&
+                                  title.touched">   
+      <div *ngIf="title.invalid && title.touched">
+        <small *ngIf="title.errors?.required" class="text-danger">Title Required</small>
+        <small *ngIf="title.errors?.minlength" class="text-danger">Title Must Be Minimum 4 Character</small>
+      </div>
+  </div>
+  <div class="form-group">
+    <label for="thumbnail">Thumbnail</label>
+      <div class="custom-file">
+        <input  type="file" 
+                class="custom-file-input" 
+                id="thumbnail" 
+                (change)="selectFile($event)"
+                accept="image/x-png,image/jpeg">
+        <input type="text" formControlName="thumbnail" style="display: none;"/>
+        <label class="custom-file-label" for="thumbnail">Choose file</label>
+      </div>  
+      <div class="progress mb-3 mt-2" *ngIf="progress.percentage > 0">
+        <div  class="progress-bar" 
+              role="progressbar" 
+              attr.aria-valuenow="{{progress.percentage}}"
+              aria-valuemin="0" aria-valuemax="100"
+              [ngStyle]="{width:progress.percentage+'%'}">{{progress.percentage}}%</div>
+      </div>
+      <img [src]="imgUrl" *ngIf="imgUrl != null" width="100%" height="60%" />
+      <!-- <div *ngIf="thumbnail.invalid && thumbnail.touched">
+        <small *ngIf="thumbnail.errors?.required" class="text-danger">Thumbnail Required</small>
+      </div>   -->
+  </div>
+  <div class="form-group">
+    <label for="content">Content</label>
+    <app-ngx-editor 
+                [config]="editorConfig"
+                [placeholder]="'Enter text here...'" 
+                [spellcheck]="true" 
+                formControlName="content"></app-ngx-editor>
+  </div>
+  <div class="form-group">
+    <label for="meta_description">Meta Description</label>
+      <input  type="text" 
+              id="meta_description" 
+              pInputText 
+              placeholder="Input Event Meta Description here..." 
+              class="form-control" 
+              formControlName="meta_description"
+              [class.is-invalid]="meta_description.invalid &&
+                                  meta_description.touched">   
+      <div *ngIf="meta_description.invalid && meta_description.touched">
+        <small *ngIf="meta_description.errors?.required" class="text-danger">Meta Description Required</small>
+        <small *ngIf="meta_description.errors?.minlength" class="text-danger">Meta Description Must Be Minimum 4 Character</small>
+      </div>  
+  </div>
+  <div class="form-group">
+    <label for="meta_keyword">Meta Keyword</label>
+      <input  type="text" 
+              id="meta_keyword" 
+              pInputText 
+              placeholder="Input Event Meta Keyword here..." 
+              class="form-control" 
+              formControlName="meta_keyword"
+              [class.is-invalid]="meta_keyword.invalid &&
+                                  meta_keyword.touched">   
+      <div *ngIf="meta_keyword.invalid && meta_keyword.touched">
+        <small *ngIf="meta_keyword.errors?.required" class="text-danger">Meta Keyword Required</small>
+        <small *ngIf="meta_keyword.errors?.minlength" class="text-danger">Meta Keyword Must Be Minimum 4 Character</small>
+      </div>  
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="form-group">
+    <label for="status">Status</label>
+    <select formControlName="status" 
+            class="form-control"
+            [class.is-invalid]="status.invalid &&
+                                status.touched">
+      <option value="" selected disabled>Choose Status</option>
+      <option value="0" >Draft</option>
+      <option value="1" >Publish</option>
+    </select>
+    <div *ngIf="status.invalid && status.touched">
+      <small *ngIf="status.errors?.required" class="text-danger">Status Required</small>
+    </div>  
+  </div>
+  <div class="form-group">
+    <label for="category">Category</label>
+    <select formControlName="category" 
+            class="form-control"
+            [class.is-invalid]="category.invalid &&
+                                category.touched">
+      <option value="" selected disabled>Choose Category</option>
+      <option value="{{ category.id }}"  *ngFor="let category of eventCategoryList" >{{ category.name }}</option>
+    </select>
+    <div *ngIf="category.invalid && category.touched">
+      <small *ngIf="category.errors?.required" class="text-danger">Category Required</small>
+    </div>  
+  </div>
+</div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+      <button
+              type="submit" 
+              class="btn btn-icon icon-right btn-primary"
+              [disabled]="!editEvent.valid">
+              <i class="far fa-save"></i> 
+      Save</button>
+    &nbsp;
+
+    <a routerLink="/management/event" class="btn btn-icon icon-right btn-light"><i class="fas fa-arrow-circle-left"></i> Cancel</a>
+  </div>
+</div>
+</form>

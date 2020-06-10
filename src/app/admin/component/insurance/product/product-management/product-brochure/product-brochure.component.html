@@ -1,0 +1,75 @@
+<div class="section-header">
+  <h1 *ngIf="Type != 'rider'">Step 8 Product Brochure</h1>
+</div>
+<form [formGroup]="brochureForm" (ngSubmit)="addBrochure()">
+<input type="text" formControlName="id" class="hilang">
+<div class="section-body">
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4>Product Brochure</h4>
+      </div>
+      <div class="card-body">
+        <!-- <pre>{{ brochureForm.value | json }}</pre> -->
+        <div class="row" *ngIf="Type != 'rider'">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="brochure">Brochure File</label>
+                <div class="custom-file">
+                  <input  type="file" 
+                          class="custom-file-input" 
+                          id="brochure" 
+                          (change)="selectFile($event)"
+                          multiple="false"
+                          accept="application/pdf">
+                  <input type="text" style="display: none;"/>
+                  <label class="custom-file-label" for="brochure">Choose file</label>
+                </div>  
+                <div class="progress mb-3 mt-2" *ngIf="progress.percentage > 0">
+                  <div  class="progress-bar" 
+                        role="progressbar" 
+                        attr.aria-valuenow="{{progress.percentage}}"
+                        aria-valuemin="0" aria-valuemax="100"
+                        [ngStyle]="{width:progress.percentage+'%'}">{{progress.percentage}}%</div>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <!-- <a href="{{ }}"> -->
+            <img src="assets/img/pdf.png" *ngIf="file_pdf != undefined || selectedFiles != undefined" width="100px" height="150px" />
+          <!-- </a> -->
+        </div>
+        <div class="row text-right mt-5">
+          <div class="col-md-12">
+              <button
+                type="button"
+                *ngIf="Type === 'rider'"
+                routerLink="/{{prefix}}/product/add/modalfactor/{{Type}}/{{Category}}/{{Id}}"
+                class="btn btn-icon icon-right btn-light">
+                  <i class="fas fa-arrow-circle-left"></i>
+              Back</button>
+              <button
+                type="button"
+                *ngIf="Type != 'rider'"
+                routerLink="/{{prefix}}/product/add/parameterize/{{Type}}/{{Category}}/{{Id}}"
+                class="btn btn-icon icon-right btn-light">
+                  <i class="fas fa-arrow-circle-left"></i>
+              Back</button>
+              &nbsp;
+              <button
+                type="submit"
+                class="btn btn-icon icon-right btn-primary">
+                  <i class="fas fa-arrow-circle-right"></i>
+              Next</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+</form>

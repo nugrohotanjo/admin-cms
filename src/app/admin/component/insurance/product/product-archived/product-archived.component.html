@@ -1,0 +1,62 @@
+<link rel="stylesheet" href="/assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css">
+
+<div class="section-header">
+  <h1>Product Archived</h1>
+  <div class="section-header-breadcrumb">
+    <div class="breadcrumb-item active"><a routeLink="/">Dashboard</a></div>
+    <div class="breadcrumb-item"><a>Product Archived</a></div>
+  </div>
+</div>
+
+<div class="section-body">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          
+        </div>
+        <div class="card-body">
+          <div class="row mb-2">
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="">Product Type</label>
+                <select id="filter_type" class="form-control">
+                  <option value="">All Type</option>
+                  <option value="basic">Basic</option>
+                  <option value="rider">Rider</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="">Product Category</label>
+                <select id="filter_category" class="form-control">
+                  <option value="">All Category</option>
+                  <option value="{{ c.category_name }}" *ngFor="let c of listCategory">{{ c.category_name }}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="table-responsive">
+              <table id="productDatatables" class="table table-striped dataTable no-footer">
+                <thead>
+                  <tr class="text-center">
+                    <th>ID</th>
+                    <th>Plan Name</th>
+                    <th>Product Name</th>
+                    <th>Product Type</th>
+                    <th>Product Category</th>
+                    <th>Product Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  

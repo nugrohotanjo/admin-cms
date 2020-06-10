@@ -1,0 +1,69 @@
+<link rel="stylesheet" href="/assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css">
+
+<div class="section-header">
+  <h1>Logs</h1>
+  <div class="section-header-breadcrumb">
+    <div class="breadcrumb-item active"><a routeLink="/">Dashboard</a></div>
+    <div class="breadcrumb-item"><a>Logs</a></div>
+  </div>
+</div>
+
+<div class="section-body">
+<div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h3>Logs Management</h3>
+        </div>
+        <div class="card-body">
+          <div class="row mb-2">
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="">Log Category</label>
+                <select id="filter_category" class="form-control" (change)="filter_category($event.target.value)">
+                  <option value="">All Category</option>
+                  <option value="ApiConsumer">ApiConsumer</option>
+                  <option value="Agent">Agent</option>
+                  <option value="New Business Charge">Charge NB</option>
+                  <option value="Renewal Charge">Charge Renewal</option>
+                  <option value="Currency">Currency</option>
+                  <option value="Email PIC">Email PIC</option>
+                  <option value="Faq">Faq</option>
+                  <option value="Identity">Identity</option>
+                  <option value="Job Occupation">Job Occupation</option>
+                  <option value="Login">Login</option>
+                  <option value="Marital Status">Marital Status</option>
+                  <option value="Promotion">Promotion</option>
+                  <option value="Permission">Permission</option>
+                  <option value="Product Creation">Product Creation</option>
+                  <option value="Relationship">Relationship</option>
+                  <option value="Role">Role</option>
+                  <option value="Scheduler">Scheduler</option>
+                  <option value="User">User</option>
+                  <option value="Txt Master New Business">TXT NB</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="table-responsive">
+              <table id="logDatatables" class="table table-striped dataTable no-footer">
+                <thead>
+                  <tr class="text-center">
+                    <th>Date</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Activity</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

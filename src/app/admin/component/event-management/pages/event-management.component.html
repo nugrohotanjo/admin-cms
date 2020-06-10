@@ -1,0 +1,46 @@
+<link rel="stylesheet" href="/assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css">
+
+<div class="section-header">
+  <h1>Event Management</h1>
+  <div class="section-header-breadcrumb">
+    <div class="breadcrumb-item active"><a routeLink="/">Dashboard</a></div>
+    <div class="breadcrumb-item"><a>Event management</a></div>
+  </div>
+</div>
+
+<div class="section-body">
+        <select id="table-filter" style="display:none">
+          <option value="">All</option>
+          <option>London</option>
+          <option>San Francisco</option>
+          <option>Engineer</option>
+          <option>Developer</option>
+        </select>
+
+<div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <button class="btn btn-primary" routerLink="add"><i class="fas fa-plus-square"></i> Add Event</button>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table id="eventDatatables" class="table table-striped dataTable no-footer">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Title</th>
+                  <th>Category</th>
+                  <th>Writer</th>
+                  <th>Publish Date</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

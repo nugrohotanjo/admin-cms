@@ -1,0 +1,121 @@
+<link rel="stylesheet" href="/assets/modules/bootstrap-daterangepicker/daterangepicker.css">
+
+<div class="section-header">
+  <h1>Create Member Get Member</h1>
+</div>
+<form [formGroup]="addMGM" (ngSubmit)="createMGM()">
+<div>
+  <div class="col-md-12">
+    <div class="progress mb-3 mt-2" *ngIf="progress.percentage > 0">
+        <div  class="progress-bar" 
+              role="progressbar" 
+              attr.aria-valuenow="{{progress.percentage}}"
+              aria-valuemin="0" aria-valuemax="100"
+              [ngStyle]="{width:progress.percentage+'%'}">{{progress.percentage}}%</div>
+      </div>
+      <img [src]="imgUrl" *ngIf="imgUrl != null" width="100%" height="100%" />
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+        <label for="start_date">Date Time</label>
+          <input  type="text"
+                  placeholder="Date Time"
+                  class="form-control"
+                  id="start_date"
+                  formControlName="date"
+                  [minDate]="minDate"
+                  bsDaterangepicker
+                  [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }"/>
+    </div>
+    <div class="form-group">
+      <label for="reward">Reward</label>
+        <input  type="text" 
+                id="reward" 
+                pInputText 
+                placeholder="Insert reward here..." 
+                class="form-control" 
+                formControlName="reward"
+                [class.is-invalid]="reward.invalid &&
+                                    reward.touched">   
+        <div *ngIf="reward.invalid && reward.touched">
+          <small *ngIf="reward.errors?.required" class="text-danger">Reward Required</small>
+        </div>  
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group">
+      <label for="end_date">Image</label>
+      <div class="custom-file">
+        <input  type="file" 
+                class="custom-file-input" 
+                id="image" 
+                (change)="selectFile($event)"
+                accept="image/x-png,image/jpeg">
+        <input type="text" formControlName="image" style="display: none;"/>
+        <label class="custom-file-label" for="image">Choose file</label>
+      </div>  
+    </div>
+    <div class="form-group">
+      <label for="maximum_amount">Maximal Refferal</label>
+        <input  type="text" 
+                id="maximum_amount" 
+                pInputText 
+                placeholder="Insert Maximum Ammount here..." 
+                class="form-control" 
+                formControlName="maximum_amount"
+                [class.is-invalid]="maximum_amount.invalid &&
+                                    maximum_amount.touched">   
+        <div *ngIf="maximum_amount.invalid && maximum_amount.touched">
+          <small *ngIf="maximum_amount.errors?.required" class="text-danger">Maximal Refferal Required</small>
+        </div>  
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+      <button
+              type="submit" 
+              class="btn btn-icon icon-right btn-primary"
+              [disabled]="!addMGM.valid">
+              <i class="far fa-save"></i> 
+      Save</button>
+    &nbsp;
+    <button type="button" class="btn btn-info" (click)="openModal(template)">Preview</button>
+    &nbsp;
+    <a routerLink="/{{prefix}}/member-get-member" class="btn btn-icon icon-right btn-light"><i class="fas fa-arrow-circle-left"></i> Cancel</a>
+  </div>
+</div>
+</form>
+
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Preview</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="col-md-12">
+      <img [src]="imgUrl" *ngIf="imgUrl != null" width="100%" height="60%" />
+    </div>
+    <div class="col-md-12">
+      <table style="width:100%">
+        <tr>
+          <td>Reward</td><td>:</td><td>{{ reward.value }}</td>
+        </tr>
+        <tr>
+          <td>Maximum Amount</td><td>:</td><td>{{ maximum_amount.value }}</td> 
+        </tr>
+        <tr>
+          <td>Start Date</td><td>:</td><td>{{ start_date  }}</td> 
+        </tr>
+        <tr>
+          <td>End Date</td><td>:</td><td>{{ end_date }}</td> 
+        </tr>
+      </table>
+    </div>
+  </div>
+</ng-template>
